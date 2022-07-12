@@ -1,0 +1,9 @@
+src/swecl.o
+src/swedate.o
+src/swehel.o
+src/swehouse.o
+src/swejpl.o
+src/swemmoon.o
+src/swemplan.o
+src/sweph.o
+src/swephlib.o
