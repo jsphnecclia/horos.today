@@ -165,7 +165,6 @@ time, mark, audio, video {
     }
     .footer {
       display: block;
-      overflow: hidden;
     }
     .footer-text {
       display: block;
