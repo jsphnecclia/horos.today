@@ -164,10 +164,14 @@ time, mark, audio, video {
       text-align: center;
     }
     .footer {
-      display: block;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      /* display: block; */
       height: 700px !important;
       text-align: center;
-      margin: auto !important;
+      /* margin: auto !important; */
     }
     .footer-text {
       display: block;
