@@ -174,7 +174,8 @@ time, mark, audio, video {
       /* margin: auto !important; */
     }
     .footer-text {
-      display: block;
+      /* display: block; */
+      margin: auto;
       text-align: left;
       position: relative !important;
       word-wrap: break-word;
