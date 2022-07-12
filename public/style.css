@@ -169,6 +169,8 @@ time, mark, audio, video {
     .footer-text {
       display: block;
       position: relative !important;
+      background-color: #2e83b9;
+      color: floralwhite;
     }
     .about-image {
       visibility: hidden;
