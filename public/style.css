@@ -165,6 +165,7 @@ time, mark, audio, video {
     }
     .footer {
       display: block;
+      overflow: hidden;
     }
     .footer-text {
       display: block;
@@ -222,12 +223,12 @@ br {
 }
 
 .footer {
-  overflow: hidden;
   position: relative;
   color: floralwhite;
   height: 390px;
   top: 0px;
   bottom: 0px;
+  margin-bottom: 0px;
   align-items: center;
   background-color: #2e83b9 !important;
   font-family: 'Roboto Slab', serif;
