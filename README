@@ -1,14 +1,6 @@
 # Rueph & Horos.io
 
-## Installation
-cd to the project directory, then
-```
-bundle install
-rake c_build
-rake get_ephe
-```
-to run enter
-```
-rerun rackup
-```
-and connect to localhost:9292
+Project License AGPL v3.0 Parker McGowan in /LICENSE
+Swiss Ephemeris License in /src/LICENSE
+  (Authors of the Swiss Ephemeris: Dieter Koch and Alois Treindl)
+Granim.js by Benjamin Blonde (@sarcadass) in public/granim-LICENSE
