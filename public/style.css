@@ -166,9 +166,11 @@ time, mark, audio, video {
     .footer {
       display: block;
       height: 700px !important;
+      text-align: center;
     }
     .footer-text {
-      display: block;
+      display: inline-block;
+      text-align: left;
       position: relative !important;
       word-wrap: break-word;
       top: 0px;
