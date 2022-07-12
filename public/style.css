@@ -170,8 +170,7 @@ time, mark, audio, video {
     .footer-text {
       display: block;
       position: relative !important;
-      margin-left: auto;
-      margin-right: auto;
+      word-wrap: break-word;
     }
     .about-image {
       visibility: hidden;
