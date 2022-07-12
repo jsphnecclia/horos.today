@@ -169,6 +169,7 @@ time, mark, audio, video {
       visibility: hidden;
     }
     .about-mobile {
+      align: center;
       display: block;
       visibility: visible;
     }
