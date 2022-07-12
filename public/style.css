@@ -175,7 +175,7 @@ time, mark, audio, video {
       left: 50px;
       right: 50px;
       bottom: 0px;
-      width: 0px !important;
+      width: auto !important;
     }
     .about-image {
       visibility: hidden;
