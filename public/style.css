@@ -91,6 +91,10 @@ time, mark, audio, video {
   padding-top: .6em;
 }
 
+.lunar-aspects h1 {
+  text-align: center;
+}
+
 #lunar-card{
   position: absolute;
   left: minmax(0em, 60%);
