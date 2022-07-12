@@ -2,7 +2,7 @@ require 'ffi'
 
 class RuephBase
   extend FFI::Library
-  ffi_lib 'src/libswe.so'
+  ffi_lib '/app/src/libswe.so'
 
   # Entire List of Planet/Bodies
   ECL_NUT           =   -1
