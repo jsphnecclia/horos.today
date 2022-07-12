@@ -189,7 +189,7 @@ time, mark, audio, video {
       visibility: hidden;
     }
     .about-mobile {
-      display: block;
+      /* display: block; */
       padding-top: 45px;
       margin-left: auto;
       margin-right: auto;
@@ -259,11 +259,11 @@ br {
 
 .footer-text {
   z-index: 99;
-  position: absolute;
+  /* position: absolute; */
   top: 0px;
   left: 50px;
   bottom: 0px;
-  width: 400px;
+  /* width: 400px; */
 }
 
 .imp-link {
