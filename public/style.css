@@ -162,11 +162,13 @@ time, mark, audio, video {
     .footer {
     }
     .footer-text {
+      display: block;
     }
     .about-image {
       visibility: hidden;
     }
     .about-mobile {
+      display: block;
       visibility: visible;
     }
 }
