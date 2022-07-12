@@ -160,9 +160,10 @@ time, mark, audio, video {
       text-align: center;
     }
     .footer {
+      display: flex;
+      flex-direction: column;
     }
     .footer-text {
-      display: block;
     }
     .about-image {
       visibility: hidden;
