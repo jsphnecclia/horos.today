@@ -193,7 +193,7 @@ time, mark, audio, video {
       visibility: hidden;
     }
     .about-mobile {
-      display: block;
+      display: inline-block;
       float: left;
       padding-top: 45px;
       margin-left: auto;
