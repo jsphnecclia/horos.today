@@ -83,7 +83,11 @@ time, mark, audio, video {
 
 }
 
-#lunar-transit{
+.lunar-transit{
+  text-align: center;
+}
+
+.lunar-aspects{
   text-align: center;
 }
 
@@ -161,9 +165,13 @@ time, mark, audio, video {
     }
     .footer {
     }
-    .about-image {
-    }
     .footer-text {
+    }
+    .about-image {
+      visibility: hidden;
+    }
+    .about-mobile {
+      visibility: visible;
     }
 }
 .exp-container{

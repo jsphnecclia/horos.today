@@ -31,11 +31,11 @@
             <h5> SUN in <%= @sun %> </h5>
 
           </div>
-          <div id="lunar-transit">
+          <div class="lunar-transit">
             <h1> LUNAR SIGN </h1>
             <h5 class="lunar-transit-inner" ><%= @lunar_transit %> </h5>
           </div>
-          <div id="lunar_aspects">
+          <div class="lunar-aspects">
             <h1> LUNAR ASPECTS </h1>
             <ul>
               <% @aspects.each do |key, val| %>
@@ -1138,6 +1138,7 @@
   </main>
   <div class="footer" id="about">
     <!-- <img class="about&#45;image" src="About_img.png" alt="Drawing of a moon surrounded by clouds and stars" align="right" > -->
+    <img class="about-mobile" src="About_mobile.png" alt="Drawing of a moon surrounded by clouds and stars" align="center" >
     <div class="footer-text">
       <h1 class="footer-title"> horos.today </h1>
       <p> </p>
