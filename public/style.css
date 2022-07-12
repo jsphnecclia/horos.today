@@ -169,6 +169,7 @@ time, mark, audio, video {
       text-align: center;
     }
     .footer-text {
+      display: block;
       text-align: left;
       margin-left: auto;
       margin-right: auto;
