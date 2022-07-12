@@ -171,8 +171,7 @@ time, mark, audio, video {
     .footer-text {
       display: block;
       text-align: left;
-      margin-left: auto;
-      margin-right: auto;
+      margin: auto !important;
       position: relative !important;
       word-wrap: break-word;
       top: 0px;
