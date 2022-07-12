@@ -171,9 +171,8 @@ time, mark, audio, video {
       position: relative !important;
       background-color: #2e83b9;
       color: floralwhite;
-      padding-left: auto;
-      padding-right: auto;
-      padding-bottom: auto;
+      padding-left: 100px;
+      padding-right: 100px;
     }
     .about-image {
       visibility: hidden;
