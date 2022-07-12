@@ -169,15 +169,16 @@ time, mark, audio, video {
       /* align-items: center; */
       /* justify-content: center; */
 
-      float: left;
-      width: 50%;
-      /* display: block; */
+            /* display: block; */
       height: 700px !important;
       text-align: center;
       /* margin: auto !important; */
     }
     .footer-text {
       /* display: block; */
+      float: left;
+      width: 50%;
+
       margin: auto;
       text-align: left;
       position: relative !important;
