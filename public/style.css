@@ -165,6 +165,7 @@ time, mark, audio, video {
     }
     .footer {
       display: block;
+      position: relative !important;
     }
     .footer-text {
       display: block;
