@@ -176,7 +176,6 @@ time, mark, audio, video {
       right: 50px;
       bottom: 0px;
       width: 300px !important;
-      text-align: left;
     }
     .about-image {
       visibility: hidden;
