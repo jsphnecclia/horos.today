@@ -171,6 +171,11 @@ time, mark, audio, video {
       display: block;
       position: relative !important;
       word-wrap: break-word;
+      top: 0px;
+      left: 50px;
+      right: 50px;
+      bottom: 0px;
+      width: 0px;
     }
     .about-image {
       visibility: hidden;
