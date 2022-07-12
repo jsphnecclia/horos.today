@@ -165,7 +165,7 @@ time, mark, audio, video {
     }
     .footer {
       display: block;
-      height: 700px;
+      height: 700px !important;
     }
     .footer-text {
       display: block;
