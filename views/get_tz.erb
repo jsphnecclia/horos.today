@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>horos.today</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300&display=swap" rel="stylesheet">
+        <script src="granim.min.js"></script>
+
+</head>
+<body>
+  <section class="hero" id="home">
+  <canvas id="canvas-basic"></canvas>
+  <noscript>
+    <style>
+      .hero {
+        background-color: darkred !important;
+      }
+    </style>
+  </noscript>
+    <div class="hero-inner">
+      <div id="tz-form">
+
+        <form method="POST" action="/">
+          <h1> enter your location </h1>
+          <input type="text" name="geolocation" placeholder="chicago, illinois" >
+          <input type="submit" value="submit">
+        </form>
+      </div>
+    </div>
+  </section>
+  <script src="gradient.js"></script>
+</body>

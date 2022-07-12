@@ -1,0 +1,14 @@
+# Rueph & Horos.io
+
+## Installation
+cd to the project directory, then
+```
+bundle install
+rake c_build
+rake get_ephe
+```
+to run enter
+```
+rerun rackup
+```
+and connect to localhost:9292

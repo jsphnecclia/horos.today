@@ -1,0 +1,1158 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>horos.today</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300&display=swap" rel="stylesheet">
+    <script src="granim.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="nav.js"></script>
+  </head>
+  <body>
+    <canvas id="canvas-basic"></canvas>
+    <script src="gradient.js"></script>
+    <noscript>
+      <style>
+.hero {
+  background-color: darkred !important;
+}
+      </style>
+    </noscript>
+    <section class="hero" id="home">
+      <div class="hero-inner">
+        <div class="animate__animated animate__slideInUp animate__delay-1s" id="lunar-card">
+          <div id="sun-sign">
+            <h5> SUN in <%= @sun %> </h5>
+
+          </div>
+          <div id="lunar-transit">
+            <h1> LUNAR SIGN </h1>
+            <h5 class="lunar-transit-inner" ><%= @lunar_transit %> </h5>
+          </div>
+          <div id="lunar_aspects">
+            <h1> LUNAR ASPECTS </h1>
+            <ul>
+              <% @aspects.each do |key, val| %>
+                <li><%= "MOON #{val[0]} #{HorosToday::PLANETS[key]} " \
+                  "#{Time.at(val[1][3]*3600).utc.strftime("%H:%M")}"%>
+                </li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+    <main>
+      <div class="exp-container" id="explanations">
+
+        <ul id="nav-bar" class="nav nav-tabs nav-justified">
+          <li class="nav-item"><a class="nav-link rounded-0" data-toggle="tab" href="#planets">PLANETS</a></li>
+          <li class="nav-item"><a class="nav-link rounded-0" data-toggle="tab" href="#signs">SIGNS</a></li>
+          <li class="nav-item"><a class="nav-link rounded-0" data-toggle="tab" href="#moon-signs">LUNAR SIGNS</a></li>
+          <li class="nav-item"><a class="nav-link rounded-0" data-toggle="tab" href="#lunar-aspects">LUNAR ASPECTS</a></li>
+          <li class="nav-item"><a class="nav-link rounded-0" data-toggle="tab" href="#daily">DAILY</a></li>
+        </ul>
+
+        <div class="tab-content">
+          <div id="planets" class="tab-pane">
+            <div class="row">
+              <div class="col">
+                <h1 class="colhead">PLANETS</h1>
+                <img class="symbol" src="symbols/Sun_symbol.svg" alt="Symbol for Sun" align="right" >
+                <h4> <b> SUN </b> </h4>
+                <p>As the source of light at the center of our solar system, the Sun represents health, vitality, and where we have the capacity to “shine” the most in life. It rules ego, leadership, success, and being in the public eye.</p>
+
+                <p><b>Positive traits:</b> courage, self-determination, and resilience
+                  <br class="inner-break"/>
+                  <b>Negative traits:</b>  self-absorption, entitlement, and being melodramatic</p>
+                <hr class="section-break"/>
+
+                <img class="symbol" src="symbols/Moon_symbol.svg" alt="Symbol for Moon" align="right" >
+                <h4><b> MOON </b></h4>
+                <p> The luminary that reflects the light of the Sun, and influences our emotional reactions to the human experience. It rules instincts, physical & emotional needs, care for self & others, home, food, family history & heritage, fertility, and life cycles. </p>
+
+                <p><b>Positive traits:</b> nurturance, emotional intelligence, and sensitivity
+                  <br class="inner-break"/>
+                  <b>Negative traits:</b> martyrdom, moodiness, and reactivity </p>
+                <hr class="section-break"/>
+
+                <img class="symbol" src="symbols/Mercury_symbol.svg" alt="Symbol for Mercury" align="right" >
+                <h4><b>MERCURY</b></h4>
+                <p>This planet is named after the messenger of the gods in ancient Roman mythology. Mercury rules communication, logic & reasoning, learning, skills, daily travel & transportation, and our perspective on the world. </p>
+
+                <p> <b> Positive traits: </b> wit, dexterity, liveliness, and intelligence
+                  <br class="inner-break"/>
+                  <b>Negative traits:</b> sarcasm, criticism, and an overactive nervous system </p>
+                <hr class="section-break"/>
+
+                <img class="symbol" src="symbols/Venus_symbol.svg" alt="Symbol for Venus" align="right" >
+                <h4> <b> VENUS </b> </h4>
+                <p> This planet is named after the goddess of love & beauty in ancient Roman mythology. It rules partnerships (romantic & platonic), values, finances, peace & diplomacy, art & aesthetics, pleasure, and sensuality. </p>
+
+                <p><b>Positive traits:</b> grace, receptivity, creativity, connection, and diplomacy
+                  <br class="inner-break"/>
+                  <b>Negative traits:</b> codependent relationships, vanity, and impulsive spending</p>
+                <hr class="section-break"/>
+
+                <img class="symbol" src="symbols/Mars_symbol.svg" alt="Symbol for Mars" align="right" >
+                <h4><b>MARS</b></h4>
+                <p>This planet is named after the god of war in ancient Roman mythology. It rules animal drive, action, competition, lust, weapons & sharp tools, wounds & scars, conflict, and violence.</p>
+
+                <p><b>Positive traits:</b> bravery, strength, and the ability to make things happen
+                  <br class="inner-break"/>
+                  <b>Negative traits:</b> anger, impulsivity, and destructiveness</p>
+              </div>
+              <div class="col">
+                <img class="symbol" src="symbols/Jupiter_symbol.svg" alt="Symbol for Jupiter" align="left" >
+                <h4><b>JUPITER</b></h4>
+                <p>This planet is named after the king of the gods in ancient Roman mythology. It rules expansion, prosperity, sports, travel, higher learning, idealism, philosophy & religion, and the justice system.</p>
+
+                <p><b>Positive traits:</b> optimism, generosity, adventurousness, and open mindedness
+                  <br class="inner-break"/>
+                  <b>Negative traits:</b> overindulgence, recklessness, preachiness, and a tendency to rely on luck over hard work</p>
+                <hr class="section-break"/>
+
+                <img class="symbol" src="symbols/Saturn_symbol.svg" alt="Symbol for Saturn" align="left" >
+                <h4><b>SATURN</b></h4>
+                <p>This planet is named after the god of time in ancient Roman mythology. It rules structure, boundaries, order, restrictions, discipline, aging, tradition, and conventionality. </p>
+
+                <p><b>Positive traits:</b> sustainability, frugality, reliability, patience, and tenacity 
+                  <br class="inner-break" />
+                  <b>Negative traits:</b> miserliness, inflexibility, and closed-mindedness
+                </p>
+                <hr class="section-break" />
+
+                <img class="symbol" src="symbols/Uranus_symbol.svg" alt="Symbol for Uranus" align="left" >
+                <h4><b>URANUS</b></h4>
+                <p>This planet is named after the god of the sky in ancient Greek mythology. It rules chaos, activism, rebellion & revolution, freedom & liberation, humanitarian efforts, and technology. </p>
+
+                <p><b>Positive traits:</b> innovation, evolution, eccentricity, and being community-focused
+                  <br class="inner-break" />
+                  <b>Negative traits:</b> anxiety, egocentric behavior, and chaotic disruptions</p>
+                <hr class="section-break" />
+
+                <img class="symbol" src="symbols/Neptune_symbol.svg" alt="symbol for Neptune" align="left" >
+                <h4><b>NEPTUNE</b></h4>
+                <p>This planet is named after the god of the sea in ancient Roman mythology. It rules spirituality, creativity, universal love, fantasy, sleep & dreams, and the intangible. </p>
+
+                <p><b>Positive traits:</b> artistry, imagination, and the pursuit of transcendence
+                  <br class="inner-break" />
+                  <b>Negative traits:</b> depression, addiction, numbing, and dissociation</p>
+                <hr class="section-break" />
+
+                <img class="symbol" src="symbols/Pluto_symbol.svg" alt="symbol for Pluto" align="left" >
+                <h4><b>PLUTO</b></h4>
+                <p>This planet is named after the god of the underworld in ancient Roman mythology. Pluto rules hidden agendas, the subconscious, shame, phobias & obsessions, destruction, death, endings, and new beginnings. </p>
+
+                <p><b>Positive traits:</b> intensity, transformation, and regeneration
+                  <br class="inner-break" />
+                  <b>Negative traits:</b> subversive behavior, secretiveness, and being vengeful</p>
+                <hr class="section-break" />
+              </div>
+            </div>
+          </div>
+
+          <div id="signs" class="tab-pane">
+            <div class="row">
+              <div class="col">
+                <h1 class="colhead">SIGNS</h1>
+                <img class="symbol" src="symbols/Aries.svg" alt="Symbol for Aries" align="right" >
+                <h4> <b> ARIES </b> </h4>
+                <p>The Aries constellation and glyph are a Ram, a symbol of the new growing season in many ancient cultures. This fire sign is ruled by Mars, the planet of war, action, agression, and courage. Aries is associated with bravery, authenticity, leadership, competition, speed, and new beginnings. Although this sign can bring out selfish and reactive behavior, its ultimate goal is to boldly initiate action.</p>
+
+                <br class="inner-break"/>
+                <p><b>Element: </b>Fire; <b>Quality: </b>Cardinal; <b>Ruling Planet: </b>Mars; <b>Glyph: </b>The Ram </p>
+                <hr class="section-break"/>
+
+                <img class="symbol" src="symbols/Taurus.svg" alt="Symbol for Taurus " align="right" >
+                <h4> <b> TAURUS </b> </h4>
+                <p> The Taurus constellation and glyph come from the myth of Europa being carried off by Zeus in the form of a bull. As a grounded Earth sign, it is ruled by Venus, the planet of values, finances, peace, and beauty. Taurus is associated with artistry, indulgence, rest, comfort, and stability. Although this sign can bring out stubbornness and materialism, its ultimate goal is to teach appreciation of the simple joys of being alive. </p>
+
+                <br class="inner-break"/>
+                <p><b>Element: </b>Earth; <b>Quality: </b>Fixed; <b>Ruling Planet: </b>Venus; <b>Glyph: </b>The Bull </p>
+                <hr class="section-break"/>
+                <img class="symbol" src="symbols/Gemini.svg" alt="Symbol for Gemini " align="right" >
+                <h4> <b> GEMINI</b> </h4>
+                <p> The Gemini constellation and glyph come from the myth of the twins Castor and Pollux, who were immortalized for their love of each other. As an ever-changing Air sign, it is ruled by Mercury, the planet of communication, travel, and trickery. Gemini is associated with curiosity, questioning, experimenting, wit, and an insaciable appetite for learning. Although this sign can bring out gossip and flightiness, its ultimate goal is to expand the mind and teach adaptability. </p>
+
+                <br class="inner-break"/>
+                <p><b>Element: </b>Air; <b>Quality: </b>Mutable; <b>Ruling Planet: </b>Mercury; <b>Glyph: </b> The Twins </p>
+                <hr class="section-break"/>
+
+                <img class="symbol" src="symbols/Cancer.svg" alt="Symbol for Cancer" align="right" >
+                <h4> <b> CANCER</b> </h4>
+                <p>The Cancer constellation and glyph come from the myth of the giant crab that battled Hercules. As a powerful Water sign, it is ruled by the Moon, the luminary responsible for nurturance, emotional reactivity, and receptivity. Cancer is associated with family, home life (both current & childhood), sensitivity, and intuition. Although this sign can bring out martyrdom and a need to control loved ones, its ultimate goal is to care for others physically and emotionally.</p>
+
+                <br class="inner-break"/>
+                <p><b>Element: </b>Water; <b>Quality: </b>Cardinal; <b>Ruling Planet: </b>Moon; <b>Glyph: </b>The Crab </p>
+                <hr class="section-break"/>
+
+                <img class="symbol" src="symbols/Leo.svg" alt="Symbol for Leo " align="right" >
+                <h4> <b> LEO </b> </h4>
+                <p> The Leo constellation and glyph come from the myth of the man-eating lion that battled Hercules. As a brilliant Fire sign, it is ruled by the Sun, the luminary responsible for leadership, identity, and resiliance. Leo is associated with ideals, creativity, dramatics, fame, and ambitions. Although this sign can bring out self-centeredness and overconfidence, its ultimate goal is to encourage and empower each person's inner authority. </p>
+
+                <br class="inner-break"/>
+                <p><b>Element: </b>Fire; <b>Quality: </b>Fixed; <b>Ruling Planet: </b>Sun; <b>Glyph: </b> The Lion </p>
+                <hr class="section-break"/>
+
+                <img class="symbol" src="symbols/Virgo.svg" alt="Symbol for Virgo" align="right" >
+                <h4> <b> VIRGO </b> </h4>
+                <p> The Virgo constellation and glyph come from the myth of the virgin Astrea, the Greek goddess of purity, who abandoned the earth when evil was introduced. This practical Earth sign is ruled by Mercury, the planet of logic, analysis, and mental energy. Virgo is associated with organization, industriousness, and cleanliness, and has an innate drive toward serving others. Although this sign can bring out criticism and perfectionism, its ultimate goal is to bring health, order, and beauty to the world. </p>
+
+                <br class="inner-break"/>
+                <p><b>Element: </b>Earth; <b>Quality: </b>Mutable; <b>Ruling Planet: </b>Mercury; <b>Glyph: </b> A Woman Holding a Bundle of Wheat </p>
+                <hr class="section-break"/>
+
+
+              </div>
+              <div class="col">
+                <img class="symbol" src="symbols/Libra.svg" alt="Symbol for Libra" align="left" >
+                <h4> <b> LIBRA </b> </h4>
+                <p>The Libra constellation and glyph are a symbol of Themis, the Greek goddess of justice and natural order. This Air sign is ruled by Venus, planet of balance, harmony, peace, and beauty. Libra is associated with aesthetics, diplomacy, cooperation, and partnerships. Although this sign can bring out people-pleasing and surface-level interactions, its ultimate goal is to inspire harmonious intimacy.</p>
+
+                <br class="inner-break"/>
+                <p><b>Element: </b>Air; <b>Quality: </b>Cardinal; <b>Ruling Planet: </b>Venus; <b>Glyph: </b> The Scales </p>
+                <hr class="section-break"/>
+                <img class="symbol" src="symbols/Scorpio.svg" alt="Symbol for Scorpio " align="left" >
+                <h4> <b> SCORPIO </b> </h4>
+                <p> The Scorpio constellation and glyph come from the myth of Orion, who was killed by a giant scorpion after boasting that he could hunt every animal on earth. This intense Water sign is ruled by Pluto, the planet of phobias, secrets, death, and rebirth. Scorpio is associated with strategy, shame, occultism, and power. Although this sign can bring out jealousy, suspicion, and revenge, its ultimate goal is to bring to light the unhealthy structures and hidden agendas that run our lives. </p>
+
+                <br class="inner-break"/>
+                <p><b>Element: </b>Water; <b>Quality: </b>Fixed; <b>Ruling Planet: </b>Pluto; <b>Glyph: </b> The Scorpion </p>
+                <hr class="section-break"/>
+                <img class="symbol" src="symbols/Sagittarius.svg" alt="Symbol for Sagittarius " align="left" >
+                <h4> <b> SAGITTARIUS </b> </h4>
+                <p> The Sagittarius constellation and glyph are a symbol of Chiron, the mythical centaur. This Fire sign is ruled by Jupiter, planet of wisdom, abundance, generosity, and expansion. Sagittarius is associated with higher learning, athletics, idealism, exploration, and open-mindedness. Although this sign can bring out preachiness and jumping to conclusions, its ultimate goal is to integrate knowledge into a system that brings good into the world. </p>
+
+                <br class="inner-break"/>
+                <p><b>Element: </b>Fire; <b>Quality: </b>Mutable; <b>Ruling Planet: </b>Jupiter; <b>Glyph: </b> The Archer </p>
+                <hr class="section-break"/>
+
+                <img class="symbol" src="symbols/Capricorn.svg" alt="Symbol for Capricorn " align="left" >
+                <h4> <b> CAPRICORN </b> </h4>
+                <p> The Capricorn constellation and glyph are a symbol of Sea-Goat, a creature associated with various myths in the ancient world, most famously of Pan turning into this creature to escape the monster Typhon.This tenacious Earth sign is ruled by Saturn, planet of time, discipline, tradition, and hierarcy. Capricorn is associated with business, hard work, responsibility, and committment. Although this sign can bring out inflexibility, self-centered ambition, and caution,  its ultimate goal is to create systems that are sustainable and can stand the test of time.</p>
+
+                <br class="inner-break"/>
+                <p><b>Element: </b>Earth; <b>Quality: </b>Cardinal; <b>Ruling Planet: </b>Saturn; <b>Glyph: </b> The Sea Goat</p>
+                <hr class="section-break"/>
+
+                <img class="symbol" src="symbols/Aquarius.svg" alt="Symbol for Aquarius" align="left" >
+                <h4> <b> AQUARIUS </b> </h4>
+                <p> The Aquarius constellation and glyph come from the myth of Ganymede, the cup-bearer of the gods. This innovative Air sign is ruled by Uranus, planet of inventions, autonomy, sudden changes, and scientific breakthroughs. Aquarius is associated with rebelliousness, individualism, altruism, and eccentricity. Although this sign has the tendency to bring out aloofness and being a "rebel without a cause", its ultimate goal is to drive the community toward evolution. </p>
+
+                <br class="inner-break"/>
+                <p><b>Element: </b>Air; <b>Quality: </b>Fixed; <b>Ruling Planet: </b>Uranus; <b>Glyph: </b>The Water-Bearer </p>
+                <hr class="section-break"/>
+
+                <img class="symbol" src="symbols/Pisces.svg" alt="Symbol for Pisces" align="left" >
+                <h4> <b> PISCES </b> </h4>
+                <p> The Pisces constellation and glyph come from the myth of Aphrodite and her son Eros transforming into two fish. This water sign is ruled by Neptune, planet of artistry, dreams, and spirituality. Pisces is associated with intuition, dreaminess, deep emotions, connection to the divine, and the process of letting go. Although this sign has a tendency to dissociate from reality and look at the world through rose-colored lenses, its ultimate goal is to enlighten spiritual paths and develop the higher Self.</p>
+
+                <br class="inner-break"/>
+                <p><b>Element: </b>Water; <b>Quality: </b>Mutable; <b>Ruling Planet: </b>Neptune; <b>Glyph: </b> Two Fish </p>
+                <hr class="section-break"/>
+
+
+              </div>
+            </div>
+          </div>
+
+
+
+          <div id="moon-signs" class="tab-pane">
+            <div class="row">
+              <div class="col">
+                <h1 class="colhead"> LUNAR SIGNS</h1>
+                <img class="symbol" src="symbols/Aries.svg" alt="Symbol for Aries" align="right" >
+                <h4> <b> ARIES </b> </h4>
+                <p> This moon seeks emotional satisfaction through healthy competition. We can feel a strong sense of urgency to get things done, which may lead to short fuses, and an aggressive approach to tackling problems. Aries moons are an excellent time to roll up our sleeves and get started on that new project.</p>
+                <hr class="section-break"/>
+
+                <img class="symbol" src="symbols/Taurus.svg" alt="Symbol for Taurus " align="right" >
+                <h4> <b> TAURUS </b> </h4>
+                <p>This moon craves emotional stability through simplicity, comfort, and stillness. We can feel a strong sense of groundedness, which means we must keep an eye out for stubbornness. Taurus moons are an excellent time to connect with the Earth, engage in self-care, and eat good food with familiar faces.</p>
+                <hr class="section-break"/>
+
+                <img class="symbol" src="symbols/Gemini.svg" alt="Symbol for Gemini " align="right" >
+                <h4> <b> GEMINI</b> </h4>
+                <p>This moon seeks emotional connection through experimenting, learning, and communicating. We can have an insatiable appetite to learn new things, but be careful of spreading information that is not ours to share. Gemini moons are perfect for exploring our interests by reading and/or writing, expanding our friendship circle, and indulging our curiosity. </p>
+                <hr class="section-break"/>
+
+                <img class="symbol" src="symbols/Cancer.svg" alt="Symbol for Cancer" align="right" >
+                <h4> <b> CANCER</b> </h4>
+                <p>This moon desires emotional balance through home, family ties, and care-taking. We can feel compelled to nurture those we love and heal our inner wounds, however, we should watch for overprotectedness and scuttling away into our crab shells. Cancer moons are a great time for long hugs, family gatherings, and cultivating a "safe space" at home.</p>
+                <hr class="section-break"/>
+
+                <img class="symbol" src="symbols/Leo.svg" alt="Symbol for Leo " align="right" >
+                <h4> <b> LEO </b> </h4>
+                <p> This moon craves emotional stimulation through creativity, charisma, and applause. We can feel the need to shine bright for those in our social circles, but watch out for over-confident behavoir getting you into trouble. Leo moons are perfect for creative play, changing our appearance, and expressing our heart's desires.</p>
+                <hr class="section-break"/>
+
+                <img class="symbol" src="symbols/Virgo.svg" alt="Symbol for Virgo" align="right" >
+                <h4> <b> VIRGO </b> </h4>
+                <p>This moon seeks emotional balance through skill sharing, healthy living, and setting realistic goals. We can feel driven to serve and provide assistance, but remember to genuinely help others instead trying to "fix" them. Virgo moons are excellent times to work towards improving a talent or skill, cleaning the house, or getting organized. </p>
+                <hr class="section-break"/>
+              </div>
+              <div class="col">
+                <h4> <b> VOID OF COURSE MOON </b></h4>
+                <p> The Moon is void of course in the space of time between its last planetary aspect in a sign until it enters a new sign. This can happen for a few minutes up to a few days. During this period of time, emotions can be confusing, thoughts can be undefined, and energy levels tend to be low. This is a good time for dreaming and creative thinking, but not for checking tasks off of a to-do list.</p>
+                <hr class="section-break" />
+
+                <img class="symbol" src="symbols/Libra.svg" alt="Symbol for Libra" align="left" >
+                <h4> <b> LIBRA </b> </h4>
+                <p> This moon desires emotional balance through beauty, fairness, and diplomacy. We can feel overly anxious about our intimate relationships, which can lead to people pleasing, and an inability to make decisions. Libra moons are excellent times for socializing with friends, adding simple touches of beauty to our homes, romantic endeavors, and artistic pursuits.</p>
+                <hr class="section-break"/>
+
+                <img class="symbol" src="symbols/Scorpio.svg" alt="Symbol for Scorpio " align="left" >
+                <h4> <b> SCORPIO </b> </h4>
+                <p> This moon craves emotional connection through intense self assessment, perception, and power. We have a desire to use the Scorpion's magnifying glass to get to the root of an issue, but can be frustrated when not every mystery can be solved. Scorpio moons are excellent times to do research, have deep conversations, and pursue intimate encounters.</p>
+                <hr class="section-break"/>
+
+                <img class="symbol" src="symbols/Sagittarius.svg" alt="Symbol for Sagittarius " align="left" >
+                <h4> <b> SAGITTARIUS </b> </h4>
+                <p> This moon seeks emotional stimulation through storytelling, higher education, and adventure. We can find ourselves creating narratives around life experience and philosophies, but we need to be careful about jumping to conclusions or getting our information from unreliable sources. Sagittarius moons are excellent for stimulating debates with friends, venturing to new places, and exploring different perspectives on life.</p>
+                <hr class="section-break"/>
+
+                <img class="symbol" src="symbols/Capricorn.svg" alt="Symbol for Capricorn " align="left" >
+                <h4> <b> CAPRICORN </b> </h4>
+                <p> This moon seeks emotional stability through self-determination, hard work, and tenacity. We can feel the strong urge to put our "nose to the grindstone," but must juggle between productivity and burning out on endless task lists. Capricorn moons are excellent for focusing on career efforts and connecting our life purpose with our daily responsibilities.</p>
+                <hr class="section-break"/>
+
+                <img class="symbol" src="symbols/Aquarius.svg" alt="Symbol for Aquarius" align="left" >
+                <h4> <b> AQUARIUS </b> </h4>
+                <p> This moon craves emotional balance through individuality, self awareness, and questioning the status quo. We can feel the impulse to question our leaders and systems. Aquarius moons are ideal for connecting with our inner cause, embracing our quirky sides, and engaging with our communities (in-person or online).</p>
+                <hr class="section-break"/>
+
+                <img class="symbol" src="symbols/Pisces.svg" alt="Symbol for Pisces" align="left" >
+                <h4> <b> PISCES </b> </h4>
+                <p> This moon desires emotional transcendence by releasing our preconceived notions about ourselves and others. We can feel the urge to retreat to a quiet place and unplug, but we do best when we focus on recharging instead of numbing. Pisces moons are an opportunity for focusing on spirit (whatever that means to us), accepting our whole spectrum of feelings, and leaning into gratitude.</p>
+                <hr class="section-break"/>
+              </div>
+            </div>
+          </div>
+
+          <div id="lunar-aspects" class="tab-pane">
+            <div class="row">
+              <div class="col">
+                <h1 class="colhead"> ASPECTS</h1>
+                <img class="symbol" src="symbols/Conjunction_symbol.svg" alt="Symbol for Conjunction" align="right" >
+                <h4><b> CONJUNCT </b> </h4>
+                <p> Conjunctions are formed when planets or important points are at the same degree. When this aspect occurs, the planets' energies tend to merge or work together. Sometimes stronger planets (like Jupiter, the Sun, or Saturn) can overpower other planets in the conjunction. </p>
+                <hr class="section-break" />
+
+                <img class="symbol" src="symbols/Square_symbol.svg" alt="Symbol for Square" align="right" >
+                <h4><b> SQUARE </b></h4>
+                <p> Squares are formed when planets or important points are approximately 90° apart in the same quality (cardinal vs cardinal, etc.). This aspect is challenging because the signs' modes of operation are similar, but their priorities are different. Although this aspect causes tension and usually slows things down, it provides opportunities to work through differences in sustainable ways.</p>
+                <hr class="section-break" />
+
+                <img class="aspect-symbol" src="symbols/Moon_symbol.svg" alt="Symbol for Moon" align="left" >
+                <img class="aspect-symbol" src="symbols/Conjunction_symbol.svg" alt="Symbol for Conjunction" align="left" >
+                <img class="aspect-symbol" src="symbols/Mercury_symbol.svg" alt="Symbol for Mercury" align="left" >
+                <h4> <b> MOON CONJUNCT MERCURY </b> </h4>
+                <p>Our feelings strongly influence our communication style, and we are quick to express those feelings. This transit is an excellent opportunity for generating new, imaginitive ideas.</p>
+                <hr class="section-break" />
+
+                <img class="aspect-symbol" src="symbols/Moon_symbol.svg" alt="Symbol for Moon" align="left" >
+                <img class="aspect-symbol" src="symbols/Square_symbol.svg" alt="Symbol for Square" align="left" >
+                <img class="aspect-symbol" src="symbols/Mercury_symbol.svg" alt="Symbol for Mercury" align="left" >
+                <h4> <b> MOON SQUARE MERCURY </b> </h4>
+                <p> Our logical brains and gut reactions can be at odds with each other. We may have trouble acurately expressing our feelings. </p>
+                <hr class="section-break" />
+
+                <img class="aspect-symbol" src="symbols/Moon_symbol.svg" alt="Symbol for Moon" align="left" >
+                <img class="aspect-symbol" src="symbols/Opposition_symbol.svg" alt="Symbol for Opposition" align="left" >
+                <img class="aspect-symbol" src="symbols/Mercury_symbol.svg" alt="Symbol for Mercury" align="left" >
+                <h4> <b> MOON OPPOSITE MERCURY </b> </h4>
+                <p>We may find ourselves emotionally upset (or upsetting others) because of communication styles. This transit is an opportunity to speak and listen with another person's perspective in mind. </p>
+                <hr class="section-break" />
+
+                <img class="aspect-symbol" src="symbols/Moon_symbol.svg" alt="Symbol for Moon" align="left" >
+                <img class="aspect-symbol" src="symbols/Sextile_symbol.svg" alt="Symbol for Sextile" align="left" >
+                <img class="aspect-symbol" src="symbols/Mercury_symbol.svg" alt="Symbol for Mercury" align="left" >
+                <h4> <b> MOON SEXTILE MERCURY </b> </h4>
+                <p> The interchange between ideas and emotions can be exciting and interesting. This is an excellent time to use language to "pull on heart strings"  in order to accomplish a goal. </p>
+                <hr class="section-break" />
+
+                <img class="aspect-symbol" src="symbols/Moon_symbol.svg" alt="Symbol for Moon" align="left" >
+                <img class="aspect-symbol" src="symbols/Trine_symbol.svg" alt="Symbol for Trine" align="left" >
+                <img class="aspect-symbol" src="symbols/Mercury_symbol.svg" alt="Symbol for Mercury" align="left" >
+                <h4> <b> MOON TRINE MERCURY </b> </h4>
+                <p>Our logical minds can work well with our instincts, and we can express ourselves in ways that are easy to hear. This is an excellent time for deep conversations and for clearing clutter around the home. </p>
+                <hr class="section-break" />
+
+
+                <img class="aspect-symbol" src="symbols/Moon_symbol.svg" alt="Symbol for Moon" align="left" >
+                <img class="aspect-symbol" src="symbols/Conjunction_symbol.svg" alt="Symbol for Conjunction" align="left" >
+                <img class="aspect-symbol" src="symbols/Venus_symbol.svg" alt="Symbol for Venus" align="left" >
+                <h4> <b> MOON CONJUNCT VENUS </b> </h4>
+                <p>We can feel particularly creative, sensitive, and sociable. Additionally, we can feel a deep emotional need to surround ourselves with beauty.</p>
+                <hr class="section-break" />
+
+                <img class="aspect-symbol" src="symbols/Moon_symbol.svg" alt="Symbol for Moon" align="left" >
+                <img class="aspect-symbol" src="symbols/Square_symbol.svg" alt="Symbol for Square" align="left" >
+                <img class="aspect-symbol" src="symbols/Venus_symbol.svg" alt="Symbol for Mercury" align="left" >
+                <h4> <b> MOON SQUARE VENUS </b> </h4>
+                <p> Our desires can come into conflict with our values. This can play out through over-spending, arguments, or rash decisions. This transit is a great time to evaluate if the life we are living is aligned with how we feel.</p>
+                <hr class="section-break" />
+
+                <img class="aspect-symbol" src="symbols/Moon_symbol.svg" alt="Symbol for Moon" align="left" >
+                <img class="aspect-symbol" src="symbols/Opposition_symbol.svg" alt="Symbol for Opposition" align="left" >
+                <img class="aspect-symbol" src="symbols/Venus_symbol.svg" alt="Symbol for Venus" align="left" >
+                <h4> <b> MOON OPPOSITE VENUS </b> </h4>
+                <p>We can feel tension between the needs of those we love and our own needs. Watch for people-pleasing behavior that doesn't truly nurture your soul. </p>
+                <hr class="section-break" />
+
+                <img class="aspect-symbol" src="symbols/Moon_symbol.svg" alt="Symbol for Moon" align="left" >
+                <img class="aspect-symbol" src="symbols/Sextile_symbol.svg" alt="Symbol for Sextile" align="left" >
+                <img class="aspect-symbol" src="symbols/Venus_symbol.svg" alt="Symbol for Venus" align="left" >
+                <h4> <b> MOON SEXTILE VENUS </b> </h4>
+                <p>Our desires and emotions can encourage us to be more outgoing. This is an excellent time for socializing and creativity. </p>
+                <hr class="section-break" />
+
+                <img class="aspect-symbol" src="symbols/Moon_symbol.svg" alt="Symbol for Moon" align="left" >
+                <img class="aspect-symbol" src="symbols/Trine_symbol.svg" alt="Symbol for Trine" align="left" >
+                <img class="aspect-symbol" src="symbols/Venus_symbol.svg" alt="Symbol for Venus" align="left" >
+                <h4> <b> MOON TRINE VENUS </b> </h4>
+                <p>We can effortlessly feel artistic, talented, beautiful, and peaceful. This is an excellent time for self-care and spiritual work.</p>
+                <hr class="section-break" />
+
+
+                <!-- Mars -->
+                <img class="aspect-symbol" src="symbols/Moon_symbol.svg" alt="Symbol for Moon" align="left" >
+                <img class="aspect-symbol" src="symbols/Conjunction_symbol.svg" alt="Symbol for Conjunction" align="left" >
+                <img class="aspect-symbol" src="symbols/Mars_symbol.svg" alt="Symbol for Mars" align="left" >
+                <h4> <b> MOON CONJUNCT MARS </b> </h4>
+                <p>  Feelings can quickly fuel our reactions. This transit is an excellent time for bravely acting on feelings, using bursts of energy to get things dones, and being emotionally honest. </p>
+                <hr class="section-break" />
+
+                <img class="aspect-symbol" src="symbols/Moon_symbol.svg" alt="Symbol for Moon" align="left" >
+                <img class="aspect-symbol" src="symbols/Square_symbol.svg" alt="Symbol for Square" align="left" >
+                <img class="aspect-symbol" src="symbols/Mars_symbol.svg" alt="Symbol for Mars" align="left" >
+                <h4> <b> MOON SQUARE MARS </b> </h4>
+                <p>  We can be driven to take action, but be easily frustrated by delays and roadblocks. Watch for sarcasm, building resentments, and irritability.</p>
+                <hr class="section-break" />
+
+                <img class="aspect-symbol" src="symbols/Moon_symbol.svg" alt="Symbol for Moon" align="left" >
+                <img class="aspect-symbol" src="symbols/Opposition_symbol.svg" alt="Symbol for Opposition" align="left" >
+                <img class="aspect-symbol" src="symbols/Mars_symbol.svg" alt="Symbol for Mars" align="left" >
+                <h4> <b> MOON OPPOSITE MARS </b> </h4>
+                <p>  We can easily move in and out of anger, and be particularly sensitive to drama. Watch for jumping to conclusions quickly.</p>
+                <hr class="section-break" />
+
+                <img class="aspect-symbol" src="symbols/Moon_symbol.svg" alt="Symbol for Moon" align="left" >
+                <img class="aspect-symbol" src="symbols/Sextile_symbol.svg" alt="Symbol for Sextile" align="left" >
+                <img class="aspect-symbol" src="symbols/Mars_symbol.svg" alt="Symbol for Mars" align="left" >
+                <h4> <b> MOON SEXTILE MARS </b> </h4>
+                <p>  We are eager to take action on our gut instincts. This is an excellent time to pay attention to your body's needs and make healthy changes.</p>
+                <hr class="section-break" />
+
+                <img class="aspect-symbol" src="symbols/Moon_symbol.svg" alt="Symbol for Moon" align="left" >
+                <img class="aspect-symbol" src="symbols/Trine_symbol.svg" alt="Symbol for Trine" align="left" >
+                <img class="aspect-symbol" src="symbols/Mars_symbol.svg" alt="Symbol for Mars" align="left" >
+                <h4> <b> MOON TRINE MARS </b> </h4>
+                <p>  We can have extra physical and emotional energy. This is an excellent time to work on or finish tasks that have been stalled due to procrastination or difficult feelings.</p>
+                <hr class="section-break" />
+
+
+                <!-- Jupiter -->
+                <img class="aspect-symbol" src="symbols/Moon_symbol.svg" alt="Symbol for Moon" align="left" >
+                <img class="aspect-symbol" src="symbols/Conjunction_symbol.svg" alt="Symbol for Conjunction" align="left" >
+                <img class="aspect-symbol" src="symbols/Jupiter_symbol.svg" alt="Symbol for Jupiter" align="left" >
+                <h4> <b> MOON CONJUNCT JUPITER </b> </h4>
+                <p>  We can suddenly feel lucky, fortuitous, and generous. This transit is an excellent time making bold moves, but be aware that it can also magnify moodiness and changability.</p>
+                <hr class="section-break" />
+
+                <img class="aspect-symbol" src="symbols/Moon_symbol.svg" alt="Symbol for Moon" align="left" >
+                <img class="aspect-symbol" src="symbols/Square_symbol.svg" alt="Symbol for Square" align="left" >
+                <img class="aspect-symbol" src="symbols/Jupiter_symbol.svg" alt="Symbol for Jupiter" align="left" >
+                <h4> <b> MOON SQUARE JUPITER </b> </h4>
+                <p>  We can be inclined toward laziness and overindulgence. Watch for being overly optomistic, especially around health and financial matters.</p>
+                <hr class="section-break" />
+
+                <img class="aspect-symbol" src="symbols/Moon_symbol.svg" alt="Symbol for Moon" align="left" >
+                <img class="aspect-symbol" src="symbols/Opposition_symbol.svg" alt="Symbol for Opposition" align="left" >
+                <img class="aspect-symbol" src="symbols/Jupiter_symbol.svg" alt="Symbol for Jupiter" align="left" >
+                <h4> <b> MOON OPPOSITE JUPITER </b> </h4>
+                <p>  Our sense of morals can be emotionally swayed by others easily. This is an excellent time to learn from other people's perspectives without needing to fully agree with them. </p>
+                <hr class="section-break" />
+
+                <img class="aspect-symbol" src="symbols/Moon_symbol.svg" alt="Symbol for Moon" align="left" >
+                <img class="aspect-symbol" src="symbols/Sextile_symbol.svg" alt="Symbol for Sextile" align="left" >
+                <img class="aspect-symbol" src="symbols/Jupiter_symbol.svg" alt="Symbol for Jupiter" align="left" >
+                <h4> <b> MOON SEXTILE JUPITER </b> </h4>
+                <p>  We can feel especially good-natured and generous. This is an excellent time for social gatherings, but be aware of overindulging during those events.</p>
+                <hr class="section-break" />
+
+                <img class="aspect-symbol" src="symbols/Moon_symbol.svg" alt="Symbol for Moon" align="left" >
+                <img class="aspect-symbol" src="symbols/Trine_symbol.svg" alt="Symbol for Trine" align="left" >
+                <img class="aspect-symbol" src="symbols/Jupiter_symbol.svg" alt="Symbol for Jupiter" align="left" >
+                <h4> <b> MOON TRINE JUPITER </b> </h4>
+                <p> We can easily feel optomistic and inclined toward expanding our knowledge. This is also an excellent time for studying, reading, or exploring. </p>
+                <hr class="section-break" />
+
+              </div>
+              <div class="col">
+                <img class="symbol" src="symbols/Trine_symbol.svg" alt="Symbol for Trine" align="left" >
+                <h4><b> TRINE </b></h4>
+                <p> Trines are formed when planets or important points are approximately 120° apart in the same element. This aspect is beneficial and the planets in play usually work together peacefully. However, the easy nature of this aspect means we can overlook the opportunities it provides.</p>
+                <hr class="section-break" />
+
+                <img class="symbol" src="symbols/Opposition_symbol.svg" alt="Symbol for Opposition" align="left" >
+                <h4><b> OPPOSITE </b></h4>
+                <p> Opposititions are formed when planets or important points are approximately 180° apart or opposite each other on the zodiacal wheel. They can feel challenging because the goals of the two signs are often similar, but their methods for meeting those goal are very different. This aspect provides opportunities to learn balance and view situations from multiple perspectives.</p>
+                <hr class="section-break" />
+
+                <img class="symbol" src="symbols/Sextile_symbol.svg" alt="Symbol for Sextile" align="left" >
+                <h4><b> SEXTILE </b></h4>
+                <p> Sextiles are formed when planets or important points are appoximately 60° apart in complementary elemental signs (fire/air OR earth/water). This aspect is beneficial, dynamic, and can inspire creative problem-solving. </p>
+                <hr class="section-break" />
+
+                <!-- Saturn -->
+                <img class="aspect-symbol" src="symbols/Moon_symbol.svg" alt="Symbol for Moon" align="left" >
+                <img class="aspect-symbol" src="symbols/Conjunction_symbol.svg" alt="Symbol for Conjunction" align="left" >
+                <img class="aspect-symbol" src="symbols/Saturn_symbol.svg" alt="Symbol for Saturn" align="left" >
+                <h4> <b> MOON CONJUNCT SATURN </b> </h4>
+                <p> We can feel focused on our to-do list and desire to keep our emotions in check. Watch for negativity and sadness taking over.  </p>
+                <hr class="section-break" />
+
+                <img class="aspect-symbol" src="symbols/Moon_symbol.svg" alt="Symbol for Moon" align="left" >
+                <img class="aspect-symbol" src="symbols/Square_symbol.svg" alt="Symbol for Square" align="left" >
+                <img class="aspect-symbol" src="symbols/Saturn_symbol.svg" alt="Symbol for Saturn" align="left" >
+                <h4> <b> MOON SQUARE SATURN </b> </h4>
+                <p>  We can be driven to work extra hard to prove ourselves, but this can quickly lead to not feeling good enough. Watch for resentments and low self-esteem.</p>
+                <hr class="section-break" />
+
+                <img class="aspect-symbol" src="symbols/Moon_symbol.svg" alt="Symbol for Moon" align="left" >
+                <img class="aspect-symbol" src="symbols/Opposition_symbol.svg" alt="Symbol for Opposition" align="left" >
+                <img class="aspect-symbol" src="symbols/Saturn_symbol.svg" alt="Symbol for Saturn" align="left" >
+                <h4> <b> MOON OPPOSITE SATURN </b> </h4>
+                <p> We can feel that our emotional needs and our responsibilities toward others are in conflict. Be sure to not push yourself or others too hard during this sensitive time.</p>
+                <hr class="section-break" />
+
+                <img class="aspect-symbol" src="symbols/Moon_symbol.svg" alt="Symbol for Moon" align="left" >
+                <img class="aspect-symbol" src="symbols/Sextile_symbol.svg" alt="Symbol for Sextile" align="left" >
+                <img class="aspect-symbol" src="symbols/Saturn_symbol.svg" alt="Symbol for Saturn" align="left" >
+                <h4> <b> MOON SEXTILE SATURN </b> </h4>
+                <p>  We can feel motivated to put ourselves more in the public eye. This is an excellent time for business networking and working toward career goals.</p>
+                <hr class="section-break" />
+
+                <img class="aspect-symbol" src="symbols/Moon_symbol.svg" alt="Symbol for Moon" align="left" >
+                <img class="aspect-symbol" src="symbols/Trine_symbol.svg" alt="Symbol for Trine" align="left" >
+                <img class="aspect-symbol" src="symbols/Saturn_symbol.svg" alt="Symbol for Saturn" align="left" >
+                <h4> <b> MOON TRINE SATURN </b> </h4>
+                <p>  We can feel extra cautious and conservative in our choices. Watch for fooling yourself into thinking that an emotional decision is being made rationally.</p>
+                <hr class="section-break" />
+
+                <!-- Uranus -->
+                <img class="aspect-symbol" src="symbols/Moon_symbol.svg" alt="Symbol for Moon" align="left" >
+                <img class="aspect-symbol" src="symbols/Conjunction_symbol.svg" alt="Symbol for Conjunction" align="left" >
+                <img class="aspect-symbol" src="symbols/Uranus_symbol.svg" alt="Symbol for Uranus" align="left" >
+                <h4> <b> MOON CONJUNCT URANUS </b> </h4>
+                <p>  We can receive brilliant insights and intuitive hits. This is an excellent time for problem-solving and expressing your individuality.</p>
+                <hr class="section-break" />
+
+                <img class="aspect-symbol" src="symbols/Moon_symbol.svg" alt="Symbol for Moon" align="left" >
+                <img class="aspect-symbol" src="symbols/Square_symbol.svg" alt="Symbol for Square" align="left" >
+                <img class="aspect-symbol" src="symbols/Uranus_symbol.svg" alt="Symbol for Uranus" align="left" >
+                <h4> <b> MOON SQUARE URANUS </b> </h4>
+                <p> Anxiety and nervous energy can run high. Watch for stubbornness and testiness, but take advantage of the increased mental stimulation. </p>
+                <hr class="section-break" />
+
+                <img class="aspect-symbol" src="symbols/Moon_symbol.svg" alt="Symbol for Moon" align="left" >
+                <img class="aspect-symbol" src="symbols/Opposition_symbol.svg" alt="Symbol for Opposition" align="left" >
+                <img class="aspect-symbol" src="symbols/Uranus_symbol.svg" alt="Symbol for Uranus" align="left" >
+                <h4> <b> MOON OPPOSITE URANUS </b> </h4>
+                <p>  We can have trouble navigating extreme ups and downs, especially in our attitudes towards those around us. Use this time to change up a living space or try something new.</p>
+                <hr class="section-break" />
+
+                <img class="aspect-symbol" src="symbols/Moon_symbol.svg" alt="Symbol for Moon" align="left" >
+                <img class="aspect-symbol" src="symbols/Sextile_symbol.svg" alt="Symbol for Sextile" align="left" >
+                <img class="aspect-symbol" src="symbols/Uranus_symbol.svg" alt="Symbol for Uranus" align="left" >
+                <h4> <b> MOON SEXTILE URANUS </b> </h4>
+                <p>  We can feel the need to make positive changes toward the future. Although there can be some nervous tension, use this time to make the bold changes you've been dreaming about.</p>
+                <hr class="section-break" />
+
+                <img class="aspect-symbol" src="symbols/Moon_symbol.svg" alt="Symbol for Moon" align="left" >
+                <img class="aspect-symbol" src="symbols/Trine_symbol.svg" alt="Symbol for Trine" align="left" >
+                <img class="aspect-symbol" src="symbols/Uranus_symbol.svg" alt="Symbol for Uranus" align="left" >
+                <h4> <b> MOON TRINE URANUS </b> </h4>
+                <p>  We can feel inspired to solve problems and increase our knowledge. This is an excellent time for learning new technology and exploring different ways to express your personality.</p>
+                <hr class="section-break" />
+
+                <!-- Neptune -->
+                <img class="aspect-symbol" src="symbols/Moon_symbol.svg" alt="Symbol for Moon" align="left" >
+                <img class="aspect-symbol" src="symbols/Conjunction_symbol.svg" alt="Symbol for Conjunction" align="left" >
+                <img class="aspect-symbol" src="symbols/Neptune_symbol.svg" alt="Symbol for Neptune" align="left" >
+                <h4> <b> MOON CONJUNCT NEPTUNE </b> </h4>
+                <p> We can feel extra sensitive, moody, sympathetic, or imaginative. While this is an excellent time for artisitc endavours, watch out for overly optomistic or confused thinking. </p>
+                <hr class="section-break" />
+
+                <img class="aspect-symbol" src="symbols/Moon_symbol.svg" alt="Symbol for Moon" align="left" >
+                <img class="aspect-symbol" src="symbols/Square_symbol.svg" alt="Symbol for Square" align="left" >
+                <img class="aspect-symbol" src="symbols/Neptune_symbol.svg" alt="Symbol for Neptune" align="left" >
+                <h4> <b> MOON SQUARE NEPTUNE </b> </h4>
+                <p> Emotions can feel overwhelming or extra painful. Watch for daydreaming and escapism, especially in the form of substance abuse or toxic relationships. </p>
+                <hr class="section-break" />
+
+                <img class="aspect-symbol" src="symbols/Moon_symbol.svg" alt="Symbol for Moon" align="left" >
+                <img class="aspect-symbol" src="symbols/Opposition_symbol.svg" alt="Symbol for Opposition" align="left" >
+                <img class="aspect-symbol" src="symbols/Neptune_symbol.svg" alt="Symbol for Neptune" align="left" >
+                <h4> <b> MOON OPPOSITE NEPTUNE </b> </h4>
+                <p> We can easily delude ourselves about other people's motivations and feelings. Watch for people-pleasing behavior and indulging toxic behaviors in others. </p>
+                <hr class="section-break" />
+
+                <img class="aspect-symbol" src="symbols/Moon_symbol.svg" alt="Symbol for Moon" align="left" >
+                <img class="aspect-symbol" src="symbols/Sextile_symbol.svg" alt="Symbol for Sextile" align="left" >
+                <img class="aspect-symbol" src="symbols/Neptune_symbol.svg" alt="Symbol for Neptune" align="left" >
+                <h4> <b> MOON SEXTILE NEPTUNE </b> </h4>
+                <p>  We can feel artistically inspired and be especially open to intuitively received information. This is an excellent time for going on a romatic date.</p>
+                <hr class="section-break" />
+
+                <img class="aspect-symbol" src="symbols/Moon_symbol.svg" alt="Symbol for Moon" align="left" >
+                <img class="aspect-symbol" src="symbols/Trine_symbol.svg" alt="Symbol for Trine" align="left" >
+                <img class="aspect-symbol" src="symbols/Neptune_symbol.svg" alt="Symbol for Neptune" align="left" >
+                <h4> <b> MOON TRINE NEPTUNE</b> </h4>
+                <p> We can easily feel inspired to help and encourage those around us. This is an excellent time for charitable projects or spiritual practice. </p>
+                <hr class="section-break" />
+
+                <!-- Pluto -->
+                <img class="aspect-symbol" src="symbols/Moon_symbol.svg" alt="Symbol for Moon" align="left" >
+                <img class="aspect-symbol" src="symbols/Conjunction_symbol.svg" alt="Symbol for Conjunction" align="left" >
+                <img class="aspect-symbol" src="symbols/Pluto_symbol.svg" alt="Symbol for Pluto" align="left" >
+                <h4> <b> MOON CONJUNCT PLUTO </b> </h4>
+                <p>  Emotions can run especially intense. Watch for obsessive or dominating behavior.</p>
+                <hr class="section-break" />
+
+                <img class="aspect-symbol" src="symbols/Moon_symbol.svg" alt="Symbol for Moon" align="left" >
+                <img class="aspect-symbol" src="symbols/Square_symbol.svg" alt="Symbol for Square" align="left" >
+                <img class="aspect-symbol" src="symbols/Pluto_symbol.svg" alt="Symbol for Pluto" align="left" >
+                <h4> <b> MOON SQUARE PLUTO </b> </h4>
+                <p>  Emotions can feel intense to the point of being overwhelming. This transit can make us desire time alone, but this can also lead to feeling abandoned.</p>
+                <hr class="section-break" />
+
+                <img class="aspect-symbol" src="symbols/Moon_symbol.svg" alt="Symbol for Moon" align="left" >
+                <img class="aspect-symbol" src="symbols/Opposition_symbol.svg" alt="Symbol for Opposition" align="left" >
+                <img class="aspect-symbol" src="symbols/Pluto_symbol.svg" alt="Symbol for Pluto" align="left" >
+                <h4> <b> MOON OPPOSITE PLUTO </b> </h4>
+                <p>  We can fall into power struggles with those around us. Watch for jealousy and manipulative behavior. Consider exploring power dynamics in relationships through healthy, consensual sexual expression.</p>
+                <hr class="section-break" />
+
+                <img class="aspect-symbol" src="symbols/Moon_symbol.svg" alt="Symbol for Moon" align="left" >
+                <img class="aspect-symbol" src="symbols/Sextile_symbol.svg" alt="Symbol for Sextile" align="left" >
+                <img class="aspect-symbol" src="symbols/Pluto_symbol.svg" alt="Symbol for Pluto" align="left" >
+                <h4> <b> MOON SEXTILE PLUTO </b> </h4>
+                <p>  We can feel driven to "flip the script" on our pain and disadvantages by seeing them as opportunities. This transit is an excellent time to explore your emotional depths with a healthy support network.</p>
+                <hr class="section-break" />
+
+                <img class="aspect-symbol" src="symbols/Moon_symbol.svg" alt="Symbol for Moon" align="left" >
+                <img class="aspect-symbol" src="symbols/Trine_symbol.svg" alt="Symbol for Trine" align="left" >
+                <img class="aspect-symbol" src="symbols/Pluto_symbol.svg" alt="Symbol for Pluto" align="left" >
+                <h4> <b> MOON TRINE PLUTO </b> </h4>
+                <p>  Our emotions can feel especially acute, but we feel driven to use that intensity toward making changes. Take advantage of this time to have deep conversations and explore your own inner landscape.</p>
+                <hr class="section-break" />
+
+              </div>
+            </div>
+          </div>
+
+          <div id="daily" class="tab-pane">
+            <div class="row">
+              <div class="col">
+                <div id="daily-lunar-aries" class="hide <%= "show" if @lunar_transit.include? "ARIES" %>">
+                  <img class="symbol" src="symbols/Aries.svg" alt="Symbol for Aries" align="right" >
+                  <h4> <b> ARIES </b> </h4>
+                  <p> This moon seeks emotional satisfaction through healthy competition. We can feel a strong sense of urgency to get things done, which may lead to short fuses and an aggressive approach to tackling problems. Aries moons are an excellent time to roll up our sleeves and get started on that new project. </p>
+                  <hr class="section-break"/>
+                </div>
+
+                <div id="daily-lunar-taurus" class="hide <%= "show" if @lunar_transit.include? "TAURUS" %>">
+                  <img class="symbol" src="symbols/Taurus.svg" alt="Symbol for Taurus " align="right" >
+                  <h4> <b> TAURUS </b> </h4>
+                  <p>This moon craves emotional stability through simplicity, comfort, and stillness. We can feel a strong sense of groundedness, which means we must keep an eye out for stubbornness. Taurus moons are an excellent time to connect with the Earth, engage in self-care, and eat good food with familiar faces.</p>
+                  <hr class="section-break"/>
+                </div>
+
+                <div id="daily-lunar-gemini" class="hide <%= "show" if @lunar_transit.include? "GEMINI" %>">
+                  <img class="symbol" src="symbols/Gemini.svg" alt="Symbol for Gemini " align="right" >
+                  <h4> <b> GEMINI</b> </h4>
+                  <p>This moon seeks emotional connection through experimenting, learning, and information flow. We can sense our inner child's insatiable appetite to learn, but must stay careful of sharing information that is not ours to share. Gemini moons are perfect for exploring our interests by reading and/or writing, expanding our communication network, and indulging our curiosity. </p>
+                  <hr class="section-break"/>
+                </div>
+
+                <div id="daily-lunar-cancer" class="hide <%= "show" if @lunar_transit.include? "CANCER" %>">
+                  <img class="symbol" src="symbols/Cancer.svg" alt="Symbol for Cancer" align="right" >
+                  <h4> <b> CANCER</b> </h4>
+                  <p>This moon desires emotional balance through home, family ties, and care-taking. We can feel compelled to nurture those we love and heal our inner wounds, however, we should watch for overprotectedness and scuttling away into our crab shells. Cancer moons are a great time for long hugs, family gatherings, and cultivating a "safe space" at home.</p>
+                  <hr class="section-break"/>
+                </div>
+
+                <div id="daily-lunar-leo" class="hide <%= "show" if @lunar_transit.include? "LEO" %>">
+                  <img class="symbol" src="symbols/Leo.svg" alt="Symbol for Leo " align="right" >
+                  <h4> <b> LEO </b> </h4>
+                  <p> This moon craves emotional stimulation through creativity, charisma, and applause. We can feel the need to shine bright for those in our social circles, but it's wise to stay watch for how over confident behavoir can blur our limitations. Leo moons are perfect for creative play, changing our appearance, and expressing our heart's desires.</p>
+                  <hr class="section-break"/>
+                </div>
+
+                <div id="daily-lunar-virgo" class="hide <%= "show" if @lunar_transit.include? "VIRGO" %>">
+                  <img class="symbol" src="symbols/Virgo.svg" alt="Symbol for Virgo" align="right" >
+                  <h4> <b> VIRGO </b> </h4>
+                  <p> This moon seeks emotional balance through skill sharing, healthy living, and setting realistic goals. We can feel driven to serve others and provide assistance, however we need to be aware of genuinely helping instead trying "fix" others. Virgo moons are excellent times to work towards improving a new skill, cleaning/organizing, and assisting others without criticism. </p>
+                  <hr class="section-break"/>
+                </div> 
+
+                <div id="daily-lunar-libra" class="hide <%= "show" if @lunar_transit.include? "LIBRA" %>">
+                  <img class="symbol" src="symbols/Libra.svg" alt="Symbol for Libra" align="left" >
+                  <h4> <b> LIBRA </b> </h4>
+                  <p> This moon desires emotional balance through beauty, fairness, and diplomacy. We can feel overly anxious about our intimate relationships, which can lead to people pleasing, and a the inability to make decisions. Libra moons are excellent times for socializing with friends, adding simple touches of beauty to our homes, romantic endeavors, and artistic pursuits.</p>
+                  <hr class="section-break"/>
+                </div>
+
+                <div id="daily-lunar-scorpio" class="hide <%= "show" if @lunar_transit.include? "SCORPIO" %>">
+                  <img class="symbol" src="symbols/Scorpio.svg" alt="Symbol for Scorpio " align="left" >
+                  <h4> <b> SCORPIO </b> </h4>
+                  <p> This moon craves emotional connection through intense self assessment, perception, and power. We have a desire to use the Scorpion's magnifying glass to get to the root of an issue; keeping in mind not every mystery can be solved. Scorpio moons are opportunities to penetrate into underlying dramas, have deep conversations, and pursue intimate encounters.</p>
+                  <hr class="section-break"/>
+                </div>
+
+                <div id="daily-lunar-sagittarius" class="hide <%= "show" if @lunar_transit.include? "SAGITTARIUS" %>">
+                  <img class="symbol" src="symbols/Sagittarius.svg" alt="Symbol for Sagittarius " align="left" >
+                  <h4> <b> SAGITTARIUS </b> </h4>
+                  <p> This moon seeks emotional stimulation through storytelling, higher education, and adventure. We can find ourselves creating narratives around life experience and philosophies; but need to keep in mind where we're gathering our plot points of information. Sagittarius moons are excellent for stimulating debates with friends, venturing to new places, and exploring different perspectives on life.</p>
+                  <hr class="section-break"/>
+                </div>
+
+                <div id="daily-lunar-capricorn" class="hide <%= "show" if @lunar_transit.include? "CAPRICORN" %>">
+                  <img class="symbol" src="symbols/Capricorn.svg" alt="Symbol for Capricorn " align="left" >
+                  <h4> <b> CAPRICORN </b> </h4>
+                  <p> This moon seeks emotional stability through self-determination, hard work, and tenacity. We can feel the strong urge to put our "nose to the grindstone," but must juggle between productivity and burning out on endless task lists. Capricorn moons are excellent for focusing on career efforts and connecting our life purpose with our daily responsibilities.</p>
+                  <hr class="section-break"/>
+                </div>
+
+                <div id="daily-lunar-aquarius" class="hide <%= "show" if @lunar_transit.include? "AQUARIUS" %>">
+                  <img class="symbol" src="symbols/Aquarius.svg" alt="Symbol for Aquarius" align="left" >
+                  <h4> <b> AQUARIUS </b> </h4>
+                  <p> This moon craves emotional balance through individuality, self awareness, and questioning the status quo. We can feel the impulse to question our leaders and/or systems, regardless of how they assist us in life. Aquarius moons are ideal for connecting with our inner cause, embracing our quirky sides, and engaging with our communities (in-person or online).</p>
+                  <hr class="section-break"/>
+                </div>
+
+                <div id="daily-lunar-pisces" class="hide <%= "show" if @lunar_transit.include? "PISCES" %>">
+                  <img class="symbol" src="symbols/Pisces.svg" alt="Symbol for Pisces" align="left" >
+                  <h4> <b> PISCES </b> </h4>
+                  <p> This moon desires emotional transcendence by releasing our ego and connecting with our higher self. We can feel the urge to seclude ourselves in a quiet place to unplug, but we do best when we focus on recharging instead of numbing. Pisces moons are an opportunity for focusing on spirit (whatever that means to us), accepting our whole spectrum of feelings, and leaning into gratitude.</p>
+                  <hr class="section-break"/>
+                </div>
+                <div id="daily-lunar-void" class="hide <%= "show" if @lunar_transit.include? "V/C" %>">
+                  <h4> <b> VOID OF COURSE MOON </b></h4>
+                  <p>The Moon is void of course in the space of time between its last planetary aspect in a sign until it enters a new sign. This can happen for a few minutes up to a few days. During this period of time, emotions can be confusing, thoughts can be undefined, and energy levels tend to be low. This is a good time for thinking and dreaming creatively, but not for checking tasks off of a to-do list.</p>
+                  <hr class="section-break" />
+              </div>
+            </div>
+             
+
+              <%# Begin Lunar Aspects #%>
+
+              <div class="col">
+                <div class="hide <%= "show" if @aspect_list.include? [2, "conjunction"] %>">
+                  <img class="aspect-symbol" src="symbols/Moon_symbol.svg" alt="Symbol for Moon" align="left" >
+                  <img class="aspect-symbol" src="symbols/Conjunction_symbol.svg" alt="Symbol for Conjunction" align="left" >
+                  <img class="aspect-symbol" src="symbols/Mercury_symbol.svg" alt="Symbol for Mercury" align="left" >
+                  <h4> <b> MOON CONJUNCT MERCURY </b> </h4>
+                  <p>Our feelings strongly influence our communication style, and we are quick to express those feelings. This transit is an excellent opportunity for generating new, imaginitive ideas.</p>
+                  <hr class="section-break" />
+                </div>
+
+                <div class="hide <%= "show" if @aspect_list.include? [2, "square"] %>">
+                  <img class="aspect-symbol" src="symbols/Moon_symbol.svg" alt="Symbol for Moon" align="left" >
+                  <img class="aspect-symbol" src="symbols/Square_symbol.svg" alt="Symbol for Square" align="left" >
+                  <img class="aspect-symbol" src="symbols/Mercury_symbol.svg" alt="Symbol for Mercury" align="left" >
+                  <h4> <b> MOON SQUARE MERCURY </b> </h4>
+                  <p> Our logical brains and gut reactions can be at odds with each other. We may have trouble acurately expressing our feelings. </p>
+                  <hr class="section-break" />
+                </div>
+
+                <div class="hide <%= "show" if @aspect_list.include? [2, "opposition"] %>">
+                  <img class="aspect-symbol" src="symbols/Moon_symbol.svg" alt="Symbol for Moon" align="left" >
+                  <img class="aspect-symbol" src="symbols/Opposition_symbol.svg" alt="Symbol for Opposition" align="left" >
+                  <img class="aspect-symbol" src="symbols/Mercury_symbol.svg" alt="Symbol for Mercury" align="left" >
+                  <h4> <b> MOON OPPOSITE MERCURY </b> </h4>
+                  <p>We may find ourselves emotionally upset (or upsetting others) because of communication styles. This transit is an opportunity to speak and listen with another person's perspective in mind. </p>
+                  <hr class="section-break" />
+                </div>
+
+                <div class="hide <%= "show" if @aspect_list.include? [2, "sextile"] %>">
+                  <img class="aspect-symbol" src="symbols/Moon_symbol.svg" alt="Symbol for Moon" align="left" >
+                  <img class="aspect-symbol" src="symbols/Sextile_symbol.svg" alt="Symbol for Sextile" align="left" >
+                  <img class="aspect-symbol" src="symbols/Mercury_symbol.svg" alt="Symbol for Mercury" align="left" >
+                  <h4> <b> MOON SEXTILE MERCURY </b> </h4>
+                  <p> The interchange between ideas and emotions can be exciting and interesting. This is an excellent time to use language to "pull on heart strings"  in order to accomplish a goal. </p>
+                  <hr class="section-break" />
+                </div>
+
+                <div class="hide <%= "show" if @aspect_list.include? [2, "trine"] %>">
+                  <img class="aspect-symbol" src="symbols/Moon_symbol.svg" alt="Symbol for Moon" align="left" >
+                  <img class="aspect-symbol" src="symbols/Trine_symbol.svg" alt="Symbol for Trine" align="left" >
+                  <img class="aspect-symbol" src="symbols/Mercury_symbol.svg" alt="Symbol for Mercury" align="left" >
+                  <h4> <b> MOON TRINE MERCURY </b> </h4>
+                  <p>Our logical minds can work well with our instincts, and we can express ourselves in ways that are easy to hear. This is an excellent time for deep conversations and for clearing clutter around the home. </p>
+                  <hr class="section-break" />
+                </div>
+
+                <div class="hide <%= "show" if @aspect_list.include? [3, "conjunction"] %>">
+                  <img class="aspect-symbol" src="symbols/Moon_symbol.svg" alt="Symbol for Moon" align="left" >
+                  <img class="aspect-symbol" src="symbols/Conjunction_symbol.svg" alt="Symbol for Conjunction" align="left" >
+                  <img class="aspect-symbol" src="symbols/Venus_symbol.svg" alt="Symbol for Venus" align="left" >
+                  <h4> <b> MOON CONJUNCT VENUS </b> </h4>
+                  <p>We can feel particularly creative, sensitive, and sociable. Additionally, we can feel a deep emotional need to surround ourselves with beauty.</p>
+                  <hr class="section-break" />
+                </div>
+
+                <div class="hide <%= "show" if @aspect_list.include? [3, "square"] %>">
+                  <img class="aspect-symbol" src="symbols/Moon_symbol.svg" alt="Symbol for Moon" align="left" >
+                  <img class="aspect-symbol" src="symbols/Square_symbol.svg" alt="Symbol for Square" align="left" >
+                  <img class="aspect-symbol" src="symbols/Venus_symbol.svg" alt="Symbol for Mercury" align="left" >
+                  <h4> <b> MOON SQUARE VENUS </b> </h4>
+                  <p> Our desires can come into conflict with our values. This can play out through over-spending, arguments, or rash decisions. This transit is a great time to evaluate if the life we are living is aligned with how we feel.</p>
+                  <hr class="section-break" />
+                </div>
+
+                <div class="hide <%= "show" if @aspect_list.include? [3, "opposition"] %>">
+                  <img class="aspect-symbol" src="symbols/Moon_symbol.svg" alt="Symbol for Moon" align="left" >
+                  <img class="aspect-symbol" src="symbols/Opposition_symbol.svg" alt="Symbol for Opposition" align="left" >
+                  <img class="aspect-symbol" src="symbols/Venus_symbol.svg" alt="Symbol for Venus" align="left" >
+                  <h4> <b> MOON OPPOSITE VENUS </b> </h4>
+                  <p>We can feel tension between the needs of those we love and our own needs. Watch for people-pleasing behavior that doesn't truly nurture your soul. </p>
+                  <hr class="section-break" />
+                </div>
+
+                <div class="hide <%= "show" if @aspect_list.include? [3, "sextile"] %>">
+                  <img class="aspect-symbol" src="symbols/Moon_symbol.svg" alt="Symbol for Moon" align="left" >
+                  <img class="aspect-symbol" src="symbols/Sextile_symbol.svg" alt="Symbol for Sextile" align="left" >
+                  <img class="aspect-symbol" src="symbols/Venus_symbol.svg" alt="Symbol for Venus" align="left" >
+                  <h4> <b> MOON SEXTILE VENUS </b> </h4>
+                  <p>Our desires and emotions can encourage us to be more outgoing. This is an excellent time for socializing and creativity. </p>
+                  <hr class="section-break" />
+                </div>
+
+                <div class="hide <%= "show" if @aspect_list.include? [3, "trine"] %>">
+                  <img class="aspect-symbol" src="symbols/Moon_symbol.svg" alt="Symbol for Moon" align="left" >
+                  <img class="aspect-symbol" src="symbols/Trine_symbol.svg" alt="Symbol for Trine" align="left" >
+                  <img class="aspect-symbol" src="symbols/Venus_symbol.svg" alt="Symbol for Venus" align="left" >
+                  <h4> <b> MOON TRINE VENUS </b> </h4>
+                  <p>We can effortlessly feel artistic, talented, beautiful, and peaceful. This is an excellent time for self-care and spiritual work.</p>
+                  <hr class="section-break" />
+                </div>
+
+
+                <!-- Mars -->
+                <div class="hide <%= "show" if @aspect_list.include? [4, "conjunction"] %>">
+                  <img class="aspect-symbol" src="symbols/Moon_symbol.svg" alt="Symbol for Moon" align="left" >
+                  <img class="aspect-symbol" src="symbols/Conjunction_symbol.svg" alt="Symbol for Conjunction" align="left" >
+                  <img class="aspect-symbol" src="symbols/Mars_symbol.svg" alt="Symbol for Mars" align="left" >
+                  <h4> <b> MOON CONJUNCT MARS </b> </h4>
+                  <p>  Feelings can quickly fuel our reactions. This transit is an excellent time for bravely acting on feelings, using bursts of energy to get things dones, and being emotionally honest. </p>
+                  <hr class="section-break" />
+                </div>
+
+                <div class="hide <%= "show" if @aspect_list.include? [4, "square"] %>">
+                  <img class="aspect-symbol" src="symbols/Moon_symbol.svg" alt="Symbol for Moon" align="left" >
+                  <img class="aspect-symbol" src="symbols/Square_symbol.svg" alt="Symbol for Square" align="left" >
+                  <img class="aspect-symbol" src="symbols/Mars_symbol.svg" alt="Symbol for Mars" align="left" >
+                  <h4> <b> MOON SQUARE MARS </b> </h4>
+                  <p>  We can be driven to take action, but be easily frustrated by delays and roadblocks. Watch for sarcasm, building resentments, and irritability.</p>
+                  <hr class="section-break" />
+                </div>
+
+                <div class="hide <%= "show" if @aspect_list.include? [4, "opposition"] %>">
+                  <img class="aspect-symbol" src="symbols/Moon_symbol.svg" alt="Symbol for Moon" align="left" >
+                  <img class="aspect-symbol" src="symbols/Opposition_symbol.svg" alt="Symbol for Opposition" align="left" >
+                  <img class="aspect-symbol" src="symbols/Mars_symbol.svg" alt="Symbol for Mars" align="left" >
+                  <h4> <b> MOON OPPOSITE MARS </b> </h4>
+                  <p>  We can easily move in and out of anger, and be particularly sensitive to drama. Watch for jumping to conclusions quickly.</p>
+                  <hr class="section-break" />
+                </div>
+
+                <div class="hide <%= "show" if @aspect_list.include? [4, "sextile"] %>">
+                  <img class="aspect-symbol" src="symbols/Moon_symbol.svg" alt="Symbol for Moon" align="left" >
+                  <img class="aspect-symbol" src="symbols/Sextile_symbol.svg" alt="Symbol for Sextile" align="left" >
+                  <img class="aspect-symbol" src="symbols/Mars_symbol.svg" alt="Symbol for Mars" align="left" >
+                  <h4> <b> MOON SEXTILE MARS </b> </h4>
+                  <p>  We are eager to take action on our gut instincts. This is an excellent time to pay attention to your body's needs and make healthy changes.</p>
+                  <hr class="section-break" />
+                </div>
+
+                <div class="hide <%= "show" if @aspect_list.include? [4, "trine"] %>">
+                  <img class="aspect-symbol" src="symbols/Moon_symbol.svg" alt="Symbol for Moon" align="left" >
+                  <img class="aspect-symbol" src="symbols/Trine_symbol.svg" alt="Symbol for Trine" align="left" >
+                  <img class="aspect-symbol" src="symbols/Mars_symbol.svg" alt="Symbol for Mars" align="left" >
+                  <h4> <b> MOON TRINE MARS </b> </h4>
+                  <p>  We can have extra physical and emotional energy. This is an excellent time to work on or finish tasks that have been stalled due to procrastination or difficult feelings.</p>
+                  <hr class="section-break" />
+                </div>
+
+
+                <!-- Jupiter -->
+                <div class="hide <%= "show" if @aspect_list.include? [5, "conjunction"] %>">
+                  <img class="aspect-symbol" src="symbols/Moon_symbol.svg" alt="Symbol for Moon" align="left" >
+                  <img class="aspect-symbol" src="symbols/Conjunction_symbol.svg" alt="Symbol for Conjunction" align="left" >
+                  <img class="aspect-symbol" src="symbols/Jupiter_symbol.svg" alt="Symbol for Jupiter" align="left" >
+                  <h4> <b> MOON CONJUNCT JUPITER </b> </h4>
+                  <p>  We can suddenly feel lucky, fortuitous, and generous. This transit is an excellent time making bold moves, but be aware that it can also magnify moodiness and changability.</p>
+                  <hr class="section-break" />
+                </div>
+
+                <div class="hide <%= "show" if @aspect_list.include? [5, "square"] %>">
+                  <img class="aspect-symbol" src="symbols/Moon_symbol.svg" alt="Symbol for Moon" align="left" >
+                  <img class="aspect-symbol" src="symbols/Square_symbol.svg" alt="Symbol for Square" align="left" >
+                  <img class="aspect-symbol" src="symbols/Jupiter_symbol.svg" alt="Symbol for Jupiter" align="left" >
+                  <h4> <b> MOON SQUARE JUPITER </b> </h4>
+                  <p>  We can be inclined toward laziness and overindulgence. Watch for being overly optomistic, especially around health and financial matters.</p>
+                  <hr class="section-break" />
+                </div>
+
+                <div class="hide <%= "show" if @aspect_list.include? [5, "opposition"] %>">
+                  <img class="aspect-symbol" src="symbols/Moon_symbol.svg" alt="Symbol for Moon" align="left" >
+                  <img class="aspect-symbol" src="symbols/Opposition_symbol.svg" alt="Symbol for Opposition" align="left" >
+                  <img class="aspect-symbol" src="symbols/Jupiter_symbol.svg" alt="Symbol for Jupiter" align="left" >
+                  <h4> <b> MOON OPPOSITE JUPITER </b> </h4>
+                  <p>  Our sense of morals can be emotionally swayed by others easily. This is an excellent time to learn from other people's perspectives without needing to fully agree with them. </p>
+                  <hr class="section-break" />
+                </div>
+
+                <div class="hide <%= "show" if @aspect_list.include? [5, "sextile"] %>">
+                  <img class="aspect-symbol" src="symbols/Moon_symbol.svg" alt="Symbol for Moon" align="left" >
+                  <img class="aspect-symbol" src="symbols/Sextile_symbol.svg" alt="Symbol for Sextile" align="left" >
+                  <img class="aspect-symbol" src="symbols/Jupiter_symbol.svg" alt="Symbol for Jupiter" align="left" >
+                  <h4> <b> MOON SEXTILE JUPITER </b> </h4>
+                  <p>  We can feel especially good-natured and generous. This is an excellent time for social gatherings, but be aware of overindulging during those events.</p>
+                  <hr class="section-break" />
+                </div>
+
+
+                <div class="hide <%= "show" if @aspect_list.include? [5, "trine"] %>">
+                  <img class="aspect-symbol" src="symbols/Moon_symbol.svg" alt="Symbol for Moon" align="left" >
+                  <img class="aspect-symbol" src="symbols/Trine_symbol.svg" alt="Symbol for Trine" align="left" >
+                  <img class="aspect-symbol" src="symbols/Jupiter_symbol.svg" alt="Symbol for Jupiter" align="left" >
+                  <h4> <b> MOON TRINE JUPITER </b> </h4>
+                  <p> We can easily feel optomistic and inclined toward expanding our knowledge. This is also an excellent time for studying, reading, or exploring. </p>
+                  <hr class="section-break" />
+                </div>
+
+
+                <!-- Saturn -->
+                <div class="hide <%= "show" if @aspect_list.include? [6, "conjunction"] %>">
+                  <img class="aspect-symbol" src="symbols/Moon_symbol.svg" alt="Symbol for Moon" align="left" >
+                  <img class="aspect-symbol" src="symbols/Conjunction_symbol.svg" alt="Symbol for Conjunction" align="left" >
+                  <img class="aspect-symbol" src="symbols/Saturn_symbol.svg" alt="Symbol for Saturn" align="left" >
+                  <h4> <b> MOON CONJUNCT SATURN </b> </h4>
+                  <p> We can feel focused on our to-do list and desire to keep our emotions in check. Watch for negativity and sadness taking over.  </p>
+                  <hr class="section-break" />
+                </div>
+
+                <div class="hide <%= "show" if @aspect_list.include? [6, "square"] %>">
+                  <img class="aspect-symbol" src="symbols/Moon_symbol.svg" alt="Symbol for Moon" align="left" >
+                  <img class="aspect-symbol" src="symbols/Square_symbol.svg" alt="Symbol for Square" align="left" >
+                  <img class="aspect-symbol" src="symbols/Saturn_symbol.svg" alt="Symbol for Saturn" align="left" >
+                  <h4> <b> MOON SQUARE SATURN </b> </h4>
+                  <p>  We can be driven to work extra hard to prove ourselves, but this can quickly lead to not feeling good enough. Watch for resentments and low self-esteem.</p>
+                  <hr class="section-break" />
+                </div>
+
+                <div class="hide <%= "show" if @aspect_list.include? [6, "opposition"] %>">
+                  <img class="aspect-symbol" src="symbols/Moon_symbol.svg" alt="Symbol for Moon" align="left" >
+                  <img class="aspect-symbol" src="symbols/Opposition_symbol.svg" alt="Symbol for Opposition" align="left" >
+                  <img class="aspect-symbol" src="symbols/Saturn_symbol.svg" alt="Symbol for Saturn" align="left" >
+                  <h4> <b> MOON OPPOSITE SATURN </b> </h4>
+                  <p> We can feel that our emotional needs and our responsibilities toward others are in conflict. Be sure to not push yourself or others too hard during this sensitive time.</p>
+                  <hr class="section-break" />
+                </div>
+
+                <div class="hide <%= "show" if @aspect_list.include? [6, "sextile"] %>">
+                  <img class="aspect-symbol" src="symbols/Moon_symbol.svg" alt="Symbol for Moon" align="left" >
+                  <img class="aspect-symbol" src="symbols/Sextile_symbol.svg" alt="Symbol for Sextile" align="left" >
+                  <img class="aspect-symbol" src="symbols/Saturn_symbol.svg" alt="Symbol for Saturn" align="left" >
+                  <h4> <b> MOON SEXTILE SATURN </b> </h4>
+                  <p>  We can feel motivated to put ourselves more in the public eye. This is an excellent time for business networking and working toward career goals.</p>
+                  <hr class="section-break" />
+                </div>
+
+                <div class="hide <%= "show" if @aspect_list.include? [6, "trine"] %>">
+                  <img class="aspect-symbol" src="symbols/Moon_symbol.svg" alt="Symbol for Moon" align="left" >
+                  <img class="aspect-symbol" src="symbols/Trine_symbol.svg" alt="Symbol for Trine" align="left" >
+                  <img class="aspect-symbol" src="symbols/Saturn_symbol.svg" alt="Symbol for Saturn" align="left" >
+                  <h4> <b> MOON TRINE SATURN </b> </h4>
+                  <p>  We can feel extra cautious and conservative in our choices. Watch for fooling yourself into thinking that an emotional decision is being made rationally.</p>
+                  <hr class="section-break" />
+                </div>
+
+                <!-- Uranus -->
+                <div class="hide <%= "show" if @aspect_list.include? [7, "conjunction"] %>">
+                  <img class="aspect-symbol" src="symbols/Moon_symbol.svg" alt="Symbol for Moon" align="left" >
+                  <img class="aspect-symbol" src="symbols/Conjunction_symbol.svg" alt="Symbol for Conjunction" align="left" >
+                  <img class="aspect-symbol" src="symbols/Uranus_symbol.svg" alt="Symbol for Uranus" align="left" >
+                  <h4> <b> MOON CONJUNCT URANUS </b> </h4>
+                  <p>  We can receive brilliant insights and intuitive hits. This is an excellent time for problem-solving and expressing your individuality.</p>
+                  <hr class="section-break" />
+                </div>
+
+                <div class="hide <%= "show" if @aspect_list.include? [7, "square"] %>">
+                  <img class="aspect-symbol" src="symbols/Moon_symbol.svg" alt="Symbol for Moon" align="left" >
+                  <img class="aspect-symbol" src="symbols/Square_symbol.svg" alt="Symbol for Square" align="left" >
+                  <img class="aspect-symbol" src="symbols/Uranus_symbol.svg" alt="Symbol for Uranus" align="left" >
+                  <h4> <b> MOON SQUARE URANUS </b> </h4>
+                  <p> Anxiety and nervous energy can run high. Watch for stubbornness and testiness, but take advantage of the increased mental stimulation. </p>
+                  <hr class="section-break" />
+                </div>
+
+                <div class="hide <%= "show" if @aspect_list.include? [7, "opposition"] %>">
+                  <img class="aspect-symbol" src="symbols/Moon_symbol.svg" alt="Symbol for Moon" align="left" >
+                  <img class="aspect-symbol" src="symbols/Opposition_symbol.svg" alt="Symbol for Opposition" align="left" >
+                  <img class="aspect-symbol" src="symbols/Uranus_symbol.svg" alt="Symbol for Uranus" align="left" >
+                  <h4> <b> MOON OPPOSITE URANUS </b> </h4>
+                  <p>  We can have trouble navigating extreme ups and downs, especially in our attitudes towards those around us. Use this time to change up a living space or try something new.</p>
+                  <hr class="section-break" />
+                </div>
+
+                <div class="hide <%= "show" if @aspect_list.include? [7, "sextile"] %>">
+                  <img class="aspect-symbol" src="symbols/Moon_symbol.svg" alt="Symbol for Moon" align="left" >
+                  <img class="aspect-symbol" src="symbols/Sextile_symbol.svg" alt="Symbol for Sextile" align="left" >
+                  <img class="aspect-symbol" src="symbols/Uranus_symbol.svg" alt="Symbol for Uranus" align="left" >
+                  <h4> <b> MOON SEXTILE URANUS </b> </h4>
+                  <p>  We can feel the need to make positive changes toward the future. Although there can be some nervous tension, use this time to make the bold changes you've been dreaming about.</p>
+                  <hr class="section-break" /> 
+                </div>
+
+                <div class="hide <%= "show" if @aspect_list.include? [7, "trine"] %>">
+                  <img class="aspect-symbol" src="symbols/Moon_symbol.svg" alt="Symbol for Moon" align="left" >
+                  <img class="aspect-symbol" src="symbols/Trine_symbol.svg" alt="Symbol for Trine" align="left" >
+                  <img class="aspect-symbol" src="symbols/Uranus_symbol.svg" alt="Symbol for Uranus" align="left" >
+                  <h4> <b> MOON TRINE URANUS </b> </h4>
+                  <p>  We can feel inspired to solve problems and increase our knowledge. This is an excellent time for learning new technology and exploring different ways to express your personality.</p>
+                  <hr class="section-break" />
+                </div>
+
+                <!-- Neptune -->
+                <div class="hide <%= "show" if @aspect_list.include? [8, "conjunction"] %>">
+                  <img class="aspect-symbol" src="symbols/Moon_symbol.svg" alt="Symbol for Moon" align="left" >
+                  <img class="aspect-symbol" src="symbols/Conjunction_symbol.svg" alt="Symbol for Conjunction" align="left" >
+                  <img class="aspect-symbol" src="symbols/Neptune_symbol.svg" alt="Symbol for Neptune" align="left" >
+                  <h4> <b> MOON CONJUNCT NEPTUNE </b> </h4>
+                  <p> We can feel extra sensitive, moody, sympathetic, or imaginative. While this is an excellent time for artisitc endavours, watch out for overly optomistic or confused thinking. </p>
+                  <hr class="section-break" />
+                </div>
+
+                <div class="hide <%= "show" if @aspect_list.include? [8, "square"] %>">
+                  <img class="aspect-symbol" src="symbols/Moon_symbol.svg" alt="Symbol for Moon" align="left" >
+                  <img class="aspect-symbol" src="symbols/Square_symbol.svg" alt="Symbol for Square" align="left" >
+                  <img class="aspect-symbol" src="symbols/Neptune_symbol.svg" alt="Symbol for Neptune" align="left" >
+                  <h4> <b> MOON SQUARE NEPTUNE </b> </h4>
+                  <p> Emotions can feel overwhelming or extra painful. Watch for daydreaming and escapism, especially in the form of substance abuse or toxic relationships. </p>
+                  <hr class="section-break" />
+                </div>
+
+                <div class="hide <%= "show" if @aspect_list.include? [8, "opposition"] %>">
+                  <img class="aspect-symbol" src="symbols/Moon_symbol.svg" alt="Symbol for Moon" align="left" >
+                  <img class="aspect-symbol" src="symbols/Opposition_symbol.svg" alt="Symbol for Opposition" align="left" >
+                  <img class="aspect-symbol" src="symbols/Neptune_symbol.svg" alt="Symbol for Neptune" align="left" >
+                  <h4> <b> MOON OPPOSITE NEPTUNE </b> </h4>
+                  <p> We can easily delude ourselves about other people's motivations and feelings. Watch for people-pleasing behavior and indulging toxic behaviors in others. </p>
+                  <hr class="section-break" />
+                </div>
+
+                <div class="hide <%= "show" if @aspect_list.include? [8, "sextile"] %>">
+                  <img class="aspect-symbol" src="symbols/Moon_symbol.svg" alt="Symbol for Moon" align="left" >
+                  <img class="aspect-symbol" src="symbols/Sextile_symbol.svg" alt="Symbol for Sextile" align="left" >
+                  <img class="aspect-symbol" src="symbols/Neptune_symbol.svg" alt="Symbol for Neptune" align="left" >
+                  <h4> <b> MOON SEXTILE NEPTUNE </b> </h4>
+                  <p>  We can feel artistically inspired and be especially open to intuitively received information. This is an excellent time for going on a romatic date.</p>
+                  <hr class="section-break" />
+                </div>
+
+                <div class="hide <%= "show" if @aspect_list.include? [8, "trine"] %>">
+                  <img class="aspect-symbol" src="symbols/Moon_symbol.svg" alt="Symbol for Moon" align="left" >
+                  <img class="aspect-symbol" src="symbols/Trine_symbol.svg" alt="Symbol for Trine" align="left" >
+                  <img class="aspect-symbol" src="symbols/Neptune_symbol.svg" alt="Symbol for Neptune" align="left" >
+                  <h4> <b> MOON TRINE NEPTUNE</b> </h4>
+                  <p> We can easily feel inspired to help and encourage those around us. This is an excellent time for charitable projects or spiritual practice. </p>
+                  <hr class="section-break" />
+                </div>
+
+                <!-- Pluto -->
+                <div class="hide <%= "show" if @aspect_list.include? [9, "conjunction"] %>">
+                  <img class="aspect-symbol" src="symbols/Moon_symbol.svg" alt="Symbol for Moon" align="left" >
+                  <img class="aspect-symbol" src="symbols/Conjunction_symbol.svg" alt="Symbol for Conjunction" align="left" >
+                  <img class="aspect-symbol" src="symbols/Pluto_symbol.svg" alt="Symbol for Pluto" align="left" >
+                  <h4> <b> MOON CONJUNCT PLUTO </b> </h4>
+                  <p>  Emotions can run especially intense. Watch for obsessive or dominating behavior.</p>
+                  <hr class="section-break" />
+                </div>
+
+                <div class="hide <%= "show" if @aspect_list.include? [9, "square"] %>">
+                  <img class="aspect-symbol" src="symbols/Moon_symbol.svg" alt="Symbol for Moon" align="left" >
+                  <img class="aspect-symbol" src="symbols/Square_symbol.svg" alt="Symbol for Square" align="left" >
+                  <img class="aspect-symbol" src="symbols/Pluto_symbol.svg" alt="Symbol for Pluto" align="left" >
+                  <h4> <b> MOON SQUARE PLUTO </b> </h4>
+                  <p>  Emotions can feel intense to the point of being overwhelming. This transit can make us desire time alone, but this can also lead to feeling abandoned.</p>
+                  <hr class="section-break" />
+                </div>
+
+                <div class="hide <%= "show" if @aspect_list.include? [9, "opposition"] %>">
+                  <img class="aspect-symbol" src="symbols/Moon_symbol.svg" alt="Symbol for Moon" align="left" >
+                  <img class="aspect-symbol" src="symbols/Opposition_symbol.svg" alt="Symbol for Opposition" align="left" >
+                  <img class="aspect-symbol" src="symbols/Pluto_symbol.svg" alt="Symbol for Pluto" align="left" >
+                  <h4> <b> MOON OPPOSITE PLUTO </b> </h4>
+                  <p>  We can fall into power struggles with those around us. Watch for jealousy and manipulative behavior. Consider exploring power dynamics in relationships through healthy, consensual sexual expression.</p>
+                  <hr class="section-break" />
+                </div>
+
+                <div class="hide <%= "show" if @aspect_list.include? [9, "sextile"] %>">
+                  <img class="aspect-symbol" src="symbols/Moon_symbol.svg" alt="Symbol for Moon" align="left" >
+                  <img class="aspect-symbol" src="symbols/Sextile_symbol.svg" alt="Symbol for Sextile" align="left" >
+                  <img class="aspect-symbol" src="symbols/Pluto_symbol.svg" alt="Symbol for Pluto" align="left" >
+                  <h4> <b> MOON SEXTILE PLUTO </b> </h4>
+                  <p>  We can feel driven to "flip the script" on our pain and disadvantages by seeing them as opportunities. This transit is an excellent time to explore your emotional depths with a healthy support network.</p>
+                  <hr class="section-break" />
+                </div>
+
+                <div class="hide <%= "show" if @aspect_list.include? [9, "trine"] %>">
+                  <img class="aspect-symbol" src="symbols/Moon_symbol.svg" alt="Symbol for Moon" align="left" >
+                  <img class="aspect-symbol" src="symbols/Trine_symbol.svg" alt="Symbol for Trine" align="left" >
+                  <img class="aspect-symbol" src="symbols/Pluto_symbol.svg" alt="Symbol for Pluto" align="left" >
+                  <h4> <b> MOON TRINE PLUTO </b> </h4>
+                  <p>  Our emotions can feel especially acute, but we feel driven to use that intensity toward making changes. Take advantage of this time to have deep conversations and explore your own inner landscape.</p>
+                  <hr class="section-break" />
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+        </div>
+      </div>
+      </div>
+  </main>
+  <div class="footer" id="about">
+    <!-- <img class="about&#45;image" src="About_img.png" alt="Drawing of a moon surrounded by clouds and stars" align="right" > -->
+    <div class="footer-text">
+      <h1 class="footer-title"> horos.today </h1>
+      <p> </p>
+      <p> horos.today is a daily astro-lunar calendar and glossary for astrology lovers, learners, and dabblers of all levels. </p>
+      <p>commandline app in development! <br />
+        suggestions, questions, etc @ parkermcgowan at horos.today</p>
+      <br />
+      <p>explanatory text by <a href="https://astrologizeit.com">AstrologizeIt</a></p>
+      <p>Swiss Ephemeris inside</p>
+      <p>rueph: ruby bindings to the swiss ephemeris library in development!</p>
+      <p>illustration by <a href="https://josephgarland.work">Joseph Garland</a></p>
+      <p><a href="https://github.com/sarcadass/granim.js">gradient animation by Benjamin Blonde</a></p>
+      <p> <a class="imp-link" href="/get_tz">click here to reset timezone</a></p>
+    </div>
+    <img class="about-image" src="About_img.png" alt="Drawing of a moon surrounded by clouds and stars" align="right" >
+  </div>
+  </body>
+</html>
