@@ -164,11 +164,9 @@ time, mark, audio, video {
       text-align: center;
     }
     .footer {
-      display: block;
+      height: 700px;
     }
     .footer-text {
-      display: block;
-      position: relative !important;
     }
     .about-image {
       visibility: hidden;
@@ -227,7 +225,6 @@ br {
   height: 390px;
   top: 0px;
   bottom: 0px;
-  margin-bottom: 0px;
   align-items: center;
   background-color: #2e83b9 !important;
   font-family: 'Roboto Slab', serif;
