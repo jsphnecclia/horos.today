@@ -87,10 +87,6 @@ time, mark, audio, video {
   text-align: center;
 }
 
-.lunar-aspects{
-  text-align: center;
-}
-
 .lunar-transit-inner{
   padding-top: .6em;
 }
@@ -174,6 +170,16 @@ time, mark, audio, video {
       visibility: visible;
     }
 }
+
+@media (min-width: 600px) {
+  .about-image {
+      visibility: visible;
+    }
+  .about-mobile {
+      visibility: hidden;
+  }
+}
+
 .exp-container{
   background-color: floralwhite;
   display: flex;
