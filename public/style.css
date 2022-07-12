@@ -167,11 +167,11 @@ time, mark, audio, video {
       display: block;
       height: 700px !important;
       text-align: center;
+      margin: auto !important;
     }
     .footer-text {
       display: block;
       text-align: left;
-      margin: auto !important;
       position: relative !important;
       word-wrap: break-word;
       top: 0px;
