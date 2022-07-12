@@ -177,7 +177,7 @@ time, mark, audio, video {
     .footer-text {
       /* display: block; */
       float: left;
-      width: 100%;
+      width: 80%;
 
       margin: auto;
       text-align: left;
@@ -193,7 +193,7 @@ time, mark, audio, video {
       visibility: hidden;
     }
     .about-mobile {
-      /* display: block; */
+      display: block;
       float: left;
       padding-top: 45px;
       margin-left: auto;
