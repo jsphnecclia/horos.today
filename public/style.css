@@ -264,7 +264,7 @@ br {
 
 .footer-text {
   z-index: 99;
-  /* position: absolute; */
+  position: absolute;
   top: 0px;
   left: 50px;
   bottom: 0px;
