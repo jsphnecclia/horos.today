@@ -245,6 +245,7 @@ br {
 }
 
 .footer {
+  overflow: hidden;
   position: relative;
   color: floralwhite;
   height: 390px !important;
