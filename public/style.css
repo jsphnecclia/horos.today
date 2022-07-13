@@ -210,6 +210,17 @@ time, mark, audio, video {
   .about-mobile {
       visibility: hidden;
   }
+  .footer {
+  position: relative;
+  color: floralwhite;
+  height: 390px !important;
+  top: 0px;
+  bottom: 0px;
+  align-items: center;
+  background-color: #2e83b9 !important;
+  font-family: 'Roboto Slab', serif;
+}
+
 }
 
 .exp-container{
