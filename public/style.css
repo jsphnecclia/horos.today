@@ -211,6 +211,7 @@ time, mark, audio, video {
       visibility: hidden;
   }
   .footer {
+    height: 390px;
     overflow: hidden;
   }
 
@@ -248,7 +249,6 @@ br {
 .footer {
   position: relative;
   color: floralwhite;
-  height: 390px !important;
   top: 0px;
   bottom: 0px;
   align-items: center;
