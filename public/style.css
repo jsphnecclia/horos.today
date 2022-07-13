@@ -211,14 +211,6 @@ time, mark, audio, video {
       visibility: hidden;
   }
   .footer {
-  position: relative;
-  color: floralwhite;
-  height: 390px !important;
-  top: 0px;
-  bottom: 0px;
-  align-items: center;
-  background-color: #2e83b9 !important;
-  font-family: 'Roboto Slab', serif;
 }
 
 }
@@ -255,7 +247,7 @@ br {
 .footer {
   position: relative;
   color: floralwhite;
-  height: 390px;
+  height: 390px !important;
   top: 0px;
   bottom: 0px;
   align-items: center;
