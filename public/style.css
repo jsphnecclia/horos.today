@@ -176,7 +176,6 @@ time, mark, audio, video {
     }
     .footer-text {
       /* display: block; */
-      overflow: hidden;
       float: left;
       width: 80%;
 
@@ -212,7 +211,8 @@ time, mark, audio, video {
       visibility: hidden;
   }
   .footer {
-}
+    overflow: hidden;
+  }
 
 }
 
