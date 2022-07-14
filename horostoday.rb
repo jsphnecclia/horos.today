@@ -82,6 +82,7 @@ class HorosTodayServer < Sinatra::Application
       c.username = 'prkrmcgwn'
     end
     tz = Timezone.lookup(results.first.coordinates[0], results.first.coordinates[1])
+    puts(params[:geolocation])
     response.set_cookie("tz", {
       :value => [params[:geolocation], tz.utc_offset/(60*60)],
       :max_age => "2592000",
