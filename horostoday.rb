@@ -24,8 +24,9 @@ class HorosTodayServer < Sinatra::Application
 
     tz = request.cookies['tz']
     
+
     if tz
-      @tz_offset = Integer(tz || '')
+      @tz_offset = Integer(tz[1] || '')
       begin
         #@tz_offset = Integer(tz || '')
       #TODO: Fix ArgumentError raising
@@ -62,7 +63,8 @@ class HorosTodayServer < Sinatra::Application
       @lunar_transit = @daily_hash[@tz_offset][:lunar_transit]
       @aspect_list = @daily_hash[@tz_offset][:aspect_list]
 
-      puts @aspect_list
+      @location = tz[0]
+
 
     else
       redirect to('/get_tz')
@@ -81,7 +83,7 @@ class HorosTodayServer < Sinatra::Application
     end
     tz = Timezone.lookup(results.first.coordinates[0], results.first.coordinates[1])
     response.set_cookie("tz", {
-      :value => tz.utc_offset/(60*60),
+      :value => [param[:geolocation], tz.utc_offset/(60*60)],
       :max_age => "2592000",
       :path => '/'
     })
