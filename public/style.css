@@ -7,9 +7,10 @@ b, i,
 dl, dt, dd, ol,
 fieldset, form, label, legend,
 table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, figcaption, figure, 
+article, aside, details, figcaption, figure, 
 footer, header, hgroup, menu, section, summary,
 time, mark, audio, video {
+  /* canvas above */
     margin:0;
     padding:0;
     border:0;
