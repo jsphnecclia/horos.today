@@ -68,12 +68,12 @@ time, mark, audio, video {
 .hero {
   width: 100vw;
   height: 100vh;
-  /*display: flex;*/
+  display: flex;
   justify-content: center;
   align-items: center;
 
   text-align: center;
-  /*flex-direction: row;*/
+  flex-direction: row;
   background-color: floralwhite;
 }
 
