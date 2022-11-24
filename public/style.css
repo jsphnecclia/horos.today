@@ -99,13 +99,12 @@ time, mark, audio, video {
 #lunar-card{
   position: absolute;
   left: minmax(0em, 60%);
-  top: 20%;
   margin: auto;
   width: minmax(auto, 20em);
   border-radius: 25px 25px 0px 0px;
   vertical-align: bottom;
   height: fit-content;
-  min-height: 45%;
+  min-height: 25%;
   background-color: floralwhite;
   text-align: left;
   padding: 20px 20px 20px 20px;
