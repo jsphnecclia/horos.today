@@ -96,6 +96,20 @@ time, mark, audio, video {
   text-align: center;
 }
 
+@keyframes slideInUp {
+
+0% {
+    -webkit-transform: translate3d(0,70%,0);
+    transform: translate3d(0,70%,0);
+    visibility: visible;
+}
+100% {
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+}
+
+}
+
 #lunar-card{
   position: absolute;
   left: minmax(0em, 60%);
