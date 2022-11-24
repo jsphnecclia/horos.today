@@ -113,7 +113,7 @@ time, mark, audio, video {
 #lunar-card{
   position: absolute;
   left: minmax(0em, 60%);
-  margin: auto;
+  margin: -20px auto;
   bottom: 0;
   width: minmax(auto, 20em);
   border-radius: 25px 25px 0px 0px;
