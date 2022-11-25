@@ -164,10 +164,10 @@ time, mark, audio, video {
 }
 @media (max-width: 750px) {
     #lunar-card {
-        position: absolute;
+        /*position: absolute;
         left: 6px;
         bottom: 0;
-        right: 6px;
+        right: 6px;*/
     }
     #tz-form {
       position: absolute;
@@ -195,7 +195,7 @@ time, mark, audio, video {
 
       margin: auto;
       text-align: left;
-      /* position: relative !important; */
+      position: relative !important;
       word-wrap: break-word;
       top: 0px;
       left: 50px;
