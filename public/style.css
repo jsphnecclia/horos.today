@@ -253,7 +253,8 @@ time, mark, audio, video {
     height: 100vh;
     top: 0;
     right: 0;
-    bottom: 0;
+    /* NOTE was bottom: 0 */
+    bottom: 100vh;
     left: 0;
 }
 
