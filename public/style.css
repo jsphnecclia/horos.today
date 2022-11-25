@@ -250,7 +250,8 @@ time, mark, audio, video {
     position: absolute;
     display: block;
     width: 100vw;
-    height: 100vh;
+    /* height: 100vh; was */
+    height: auto;
     top: 0;
     right: 0;
     /* NOTE was bottom: 0 */
