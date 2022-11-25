@@ -165,16 +165,16 @@ time, mark, audio, video {
 @media (max-width: 750px) {
     #lunar-card {
         position: absolute;
-        left: 6px;
+        left: 9px;
         /* bottom:0; */
-        right: 6px;
+        right: 9px;
     }
     #tz-form {
       position: absolute;
       margin-left: auto;
       margin-right: auto;
-      left: 0;
-      right: 0;
+      left: 9px;
+      right: 9px;
       text-align: center;
     }
     .footer {
