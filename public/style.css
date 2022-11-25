@@ -195,9 +195,9 @@ time, mark, audio, video {
 
       margin: auto;
       text-align: left;
-      position: relative !important;
+      /* position: relative !important; */
       word-wrap: break-word;
-      /*top: 0px;*/
+      top: 0px;
       left: 50px;
       right: 50px;
       bottom: 0px;
