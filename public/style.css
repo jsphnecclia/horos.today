@@ -255,6 +255,7 @@ time, mark, audio, video {
     /* height: 100vh; was */
     height: 100vh;
     margin: 0;
+    padding: 0;
     top: 0;
     right: 0;
     /* NOTE was bottom: 0 */
