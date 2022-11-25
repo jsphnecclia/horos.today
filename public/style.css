@@ -188,7 +188,6 @@ time, mark, audio, video {
             /* display: block; */
 
       /* NOTE - top: 100vh;*/
-      top: 100vh !important;
       height: 700px !important;
       text-align: center;
       /* margin: auto !important; */
