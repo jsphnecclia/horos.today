@@ -115,7 +115,7 @@ time, mark, audio, video {
   left: minmax(0em, 60%);
   margin: 0;
   /* NOTE bottom: 0 to bottom: 100vh*/
-  bottom: 100%;
+  bottom: 100vh;
   width: minmax(auto, 20em);
   border-radius: 25px 25px 0px 0px;
   vertical-align: bottom;
@@ -168,7 +168,8 @@ time, mark, audio, video {
     #lunar-card {
         position: absolute;
         left: 6px;
-        bottom:0;
+        /* NOTE was bottom: 0 */
+        bottom: 100vh;
         right: 6px;
     }
     #tz-form {
@@ -251,8 +252,7 @@ time, mark, audio, video {
     display: block;
     width: 100vw;
     /* height: 100vh; was */
-    height: 100%;
-    /* NOTE had no margin */
+    height: 100vh;
     margin: 0;
     top: 0;
     right: 0;
