@@ -116,7 +116,7 @@ time, mark, audio, video {
   bottom: 0;
   width: minmax(auto, 20em);
   border-radius: 25px 25px 0px 0px;
-  /* vertical-align: bottom; */
+  vertical-align: bottom;
   height: fit-content;
   min-height: 45%;
   background-color: floralwhite;
@@ -164,17 +164,17 @@ time, mark, audio, video {
 }
 @media (max-width: 750px) {
     #lunar-card {
-        position: absolute;
-        left: 9px;
-        bottom: 0;
-        right: 9px;
+        position: relative;
+        left: 6px;
+        bottom:0;
+        right: 6px;
     }
     #tz-form {
       position: absolute;
       margin-left: auto;
       margin-right: auto;
-      left: 9px;
-      right: 9px;
+      left: 0;
+      right: 0;
       text-align: center;
     }
     .footer {
