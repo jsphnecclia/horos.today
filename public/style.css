@@ -230,6 +230,7 @@ time, mark, audio, video {
   }
   .footer {
     /* NOTE top: 100vh */
+    top: 100vh;
     height: 390px;
     overflow: hidden;
   }
