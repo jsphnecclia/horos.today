@@ -188,7 +188,7 @@ time, mark, audio, video {
             /* display: block; */
 
       /* NOTE - top: 100vh;*/
-      top: 100vh;
+      top: 100vh !important;
       height: 700px !important;
       text-align: center;
       /* margin: auto !important; */
@@ -230,6 +230,8 @@ time, mark, audio, video {
       visibility: hidden;
   }
   .footer {
+    /* NOTE top: 100vh */
+    top: 100vh;
     height: 390px;
     overflow: hidden;
   }
