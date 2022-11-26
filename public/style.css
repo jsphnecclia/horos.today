@@ -169,7 +169,6 @@ time, mark, audio, video {
         position: absolute;
         left: 6px;
         bottom:0;
-        margin: -20px auto;
         right: 6px;
     }
     #tz-form {
