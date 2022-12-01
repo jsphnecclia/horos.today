@@ -22,6 +22,10 @@ time, mark, audio, video {
     font-family: 'Roboto Slab', serif;
 }
 
+body {
+  overflow-x: hidden !important;
+}
+
 .colhead {
     font-family: 'Roboto Slab', serif;
     /*text-align: center;*/
