@@ -22,7 +22,7 @@ time, mark, audio, video {
     font-family: 'Roboto Slab', serif;
 }
 
-body {
+canvas {
   overflow-x: hidden !important;
 }
 
