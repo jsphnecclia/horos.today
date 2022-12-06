@@ -23,7 +23,7 @@ time, mark, audio, video {
 }
 
 canvas {
-  overflow-x: hidden !important;
+  overflow: hidden !important;
 }
 
 .colhead {
