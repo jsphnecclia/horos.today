@@ -74,7 +74,7 @@ time, mark, audio, video {
 
   text-align: center;
   flex-direction: row;
-  background-color: floralwhite;
+  background-color: red;
 }
 
 #cur_sun {
@@ -239,7 +239,7 @@ time, mark, audio, video {
 }
 
 .exp-container{
-  background-color: red;
+  background-color: floralwhite;
   display: flex;
   flex-wrap: wrap;
 }
