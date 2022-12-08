@@ -239,13 +239,13 @@ time, mark, audio, video {
 }
 
 .exp-container{
-  background-color: floralwhite;
+  background-color: red;
   display: flex;
   flex-wrap: wrap;
 }
 .exp {
   flex: 20%;
-  background-color: red;
+  background-color: floralwhite;
 }
 
 #canvas-basic {
