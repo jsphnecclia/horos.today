@@ -65,16 +65,17 @@ time, mark, audio, video {
   border-radius: 0 !important;
 }
 
+/* ISSUE WITH HERO */
 .hero {
   width: 100vw;
-  height: 90vh;
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
 
   text-align: center;
   flex-direction: row;
-  background-color: red;
+  background-color: floralwhite;
 }
 
 #cur_sun {
