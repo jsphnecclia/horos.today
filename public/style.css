@@ -68,7 +68,7 @@ time, mark, audio, video {
 /* ISSUE WITH HERO */
 .hero {
   width: 100vw;
-  height: 100vh;
+  height: calc(100vh - calc(100vh - 100%));
   display: flex;
   justify-content: center;
   align-items: center;
